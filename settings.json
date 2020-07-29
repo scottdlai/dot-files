@@ -1,0 +1,167 @@
+{
+  "workbench.colorTheme": "Gruvbox Dark Medium",
+  "workbench.iconTheme": "material-icon-theme",
+  "workbench.editor.enablePreview": false,
+  "editor.fontFamily": "'Source Code Pro for Powerline', 'Hack', Menlo, monospace",
+  "editor.formatOnSave": true,
+  "editor.formatOnPaste": true,
+  "editor.rulers": [80, 120],
+  "editor.fontSize": 14,
+  "editor.renderWhitespace": "all",
+  "editor.suggestSelection": "first",
+  "editor.lineNumbers": "relative",
+  "editor.tabCompletion": "on",
+  "editor.bracketPairColorization.enabled": true,
+  "window.zoomLevel": 1,
+  "keyboard.touchbar.enabled": false,
+  "debug.console.fontSize": 14,
+  "terminal.integrated.fontSize": 14,
+  "debug.showBreakpointsInOverviewRuler": true,
+  "zenMode.hideLineNumbers": false,
+
+  "[javascript]": {
+    "editor.tabSize": 2,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.tabSize": 2,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[reasonml]": {
+    "editor.tabSize": 2
+  },
+  "[html]": {
+    "editor.tabSize": 2,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[css]": {
+    "editor.tabSize": 2,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.tabSize": 2
+  },
+  "[json]": {
+    "editor.tabSize": 2,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescriptreact]": {
+    "editor.tabSize": 2,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascriptreact]": {
+    "editor.tabSize": 2,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[reason]": {
+    "editor.defaultFormatter": "jaredly.reason-vscode",
+    "editor.tabSize": 2
+  },
+  "[vue]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.tabSize": 2
+  },
+
+  "javascript.preferences.quoteStyle": "single",
+  "typescript.preferences.quoteStyle": "single",
+
+  "prettier.jsxSingleQuote": true,
+  "prettier.singleQuote": true,
+
+  "files.associations": {
+    "*.tsx": "typescriptreact"
+  },
+
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "javascript.updateImportsOnFileMove.enabled": "always",
+
+  "vim.insertModeKeyBindings": [
+    {
+      "before": ["<C-j>"],
+      "after": ["<Esc>"]
+    },
+    {
+      "before": ["<C-k>"],
+      "after": ["<C-p>"]
+    }
+  ],
+
+  "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "before": ["J"],
+      "after": ["}"]
+    },
+    {
+      "before": ["K"],
+      "after": ["{"]
+    },
+    {
+      "before": [";"],
+      "after": [":"]
+    },
+    {
+      "before": ["E"],
+      "after": ["$"]
+    },
+    {
+      "before": ["B"],
+      "after": ["^"]
+    },
+    {
+      "before": ["\n"],
+      "commands": ["editor.action.showHover"]
+    },
+    {
+      "before": ["g", "h"],
+      "commands": ["editor.emmet.action.balanceOut"]
+    },
+    {
+      "before": ["g", ";"],
+      "after": ["`", "`"]
+    }
+  ],
+
+  "vim.visualModeKeyBindingsNonRecursive": [
+    {
+      "before": ["J"],
+      "after": ["}"]
+    },
+    {
+      "before": ["K"],
+      "after": ["{"]
+    },
+    {
+      "before": [";"],
+      "commands": ["workbench.action.showCommands"]
+    },
+    {
+      "before": ["E"],
+      "after": ["$"]
+    },
+    {
+      "before": ["B"],
+      "after": ["^"]
+    },
+    {
+      "before": ["g", ";"],
+      "after": ["`", "`"]
+    }
+  ],
+
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
+  "vetur.validation.templateProps": true,
+  "diffEditor.ignoreTrimWhitespace": false,
+  "workbench.startupEditor": "none",
+  "tailwindCSS.includeLanguages": {
+    "vue": "html",
+    "vue-html": "html",
+    "typescript": "javascript",
+    "typescriptreact": "javascript"
+  }
+}
