@@ -127,6 +127,10 @@
     {
       "before": ["g", "h"],
       "commands": ["editor.emmet.action.balanceOut"]
+    },
+    {
+      "before": ["g", ";"],
+      "after": ["`", "`"]
     }
   ],
 
