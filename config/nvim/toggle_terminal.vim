@@ -70,5 +70,5 @@ function! MonkeyTerminalExec(cmd)
 endfunction
 
 " With this maps you can now toggle the terminal
-nnoremap ` :call MonkeyTerminalToggle()<cr>
-nnoremap ` <C-\><C-n>:call MonkeyTerminalToggle()<cr>
+nnoremap g` :call MonkeyTerminalToggle()<cr>
+nnoremap g` <C-\><C-n>:call MonkeyTerminalToggle()<cr>

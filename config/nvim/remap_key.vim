@@ -9,6 +9,7 @@ noremap J }
 noremap B ^
 noremap E $
 noremap ; :
+noremap g; ``
 
 " normal mode
 nmap <Left> :vertical resize -2<CR>
