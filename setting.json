@@ -154,5 +154,6 @@
   ],
 
   "eslint.validate": ["typescript", "typescriptreact"],
-  "vetur.validation.templateProps": true
+  "vetur.validation.templateProps": true,
+  "python.defaultInterpreterPath": "/usr/local/bin/python3"
 }
