@@ -1,0 +1,13 @@
+[user]
+	name = Scott Lai
+	email = tuonglai3602@gmail.com
+[pull]
+	rebase = false
+[init]
+	defaultBranch = master
+[alias]
+	stat = "!f() { git diff --stat --merge-base ${1:-$(git config --global init.defaultBranch)}; }; f"
+	bf = branch --format='%(HEAD) %(if)%(HEAD)%(then)%(color:green)%(else)%(color:yellow)%(end)%(refname:short)%(color:reset) - %(contents:subject) %(color:green)[%(authorname)] %(color:red)(%(committerdate:relative))' --sort=-committerdate
+	lol = log --oneline --decorate --graph
+	uncommit = "!f() { git reset --soft ${1:-HEAD~}; }; f"
+	unstage = restore --staged
