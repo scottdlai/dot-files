@@ -6,8 +6,16 @@
 [init]
 	defaultBranch = master
 [alias]
-	stat = "!f() { git diff --stat --merge-base ${1:-$(git config --global init.defaultBranch)}; }; f"
-	bf = branch --format='%(HEAD) %(if)%(HEAD)%(then)%(color:bold green)%(end)%(refname:short)%(color:reset): %(color:yellow)%(objectname:short) %(color:cyan)<%(authorname)> %(color:red)(%(committerdate:relative))' --sort=-committerdate
 	lol = log --oneline --decorate --graph
-	uncommit = "!f() { git reset --soft ${1:-HEAD~}; }; f"
+	stat = "!f() { \
+		git diff --stat --merge-base ${1:-$(git config --global init.defaultBranch)}; \
+		}; \
+		f"
+	bf = branch \
+		--format='%(HEAD) %(if)%(HEAD)%(then)%(color:bold green)%(end)%(refname:short)%(color:reset): %(color:yellow)%(objectname:short) %(color:cyan)<%(authorname)> %(color:red)(%(committerdate:relative))' \
+		--sort=-committerdate
+	uncommit = "!f() { \
+		git reset --soft ${1:-HEAD~};\
+		}; \
+		f"
 	unstage = reset HEAD
