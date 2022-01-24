@@ -11,3 +11,4 @@
 	bf = branch --format='%(HEAD) %(if)%(HEAD)%(then)%(color:bold green)%(end)%(refname:short)%(color:reset): %(color:yellow)%(objectname:short) %(color:cyan)<%(authorname)> %(color:red)(%(committerdate:relative))' --sort=-committerdate
 	uncommit = "!f() { git reset --soft ${1:-HEAD~}; }; f"
 	unstage = reset HEAD
+	standup = "!git log --reverse --since=yesterday --pretty='%s' --author=$(git config --get user.email)"
