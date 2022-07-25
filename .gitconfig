@@ -2,7 +2,7 @@
 	name = Scott Lai
 	email = tuonglai3602@gmail.com
 [pull]
-	rebase = false
+	rebase = true
 [init]
 	defaultBranch = master
 [alias]
@@ -13,3 +13,5 @@
 	unstage = reset HEAD
 	standup = "!git log --reverse --since=yesterday --pretty='%s' --author=$(git config --get user.email)"
 	unfuck = reset --hard HEAD
+[rebase]
+	autoStash = true
