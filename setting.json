@@ -149,12 +149,19 @@
     }
   ],
 
-  "eslint.validate": ["typescript", "typescriptreact"],
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
   "vetur.validation.templateProps": true,
   "diffEditor.ignoreTrimWhitespace": false,
   "workbench.startupEditor": "none",
   "tailwindCSS.includeLanguages": {
     "vue": "html",
-    "vue-html": "html"
+    "vue-html": "html",
+    "typescript": "javascript",
+    "typescriptreact": "javascript"
   }
 }
