@@ -94,6 +94,8 @@ autocmd FileType ocaml,json,javascript,typescript set tabstop=2|set shiftwidth=2
 " File that use tabs instead of spaces
 autocmd FileType make,gitconfig set noexpandtab
 
+autocmd FileType tmux set formatoptions-=t | set tw=0 | set nowrap
+
 " toggle terminal
 source $HOME/.config/nvim/toggle_terminal.vim
 
