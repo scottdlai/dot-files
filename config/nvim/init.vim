@@ -9,10 +9,6 @@ Plug 'junegunn/fzf.vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-fugitive'
 Plug 'junegunn/goyo.vim'
-" Language support
-Plug 'ocaml/vim-ocaml'
-Plug 'elixir-editors/vim-elixir'
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 " Themes
 Plug 'morhetz/gruvbox'
 Plug 'arcticicestudio/nord-vim'
