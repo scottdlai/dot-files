@@ -33,3 +33,6 @@ export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS"\
 }
 
 _gen_fzf_default_opts
+
+# Map Ctrl-p to launch fzf cd widget
+bindkey '^p' fzf-cd-widget

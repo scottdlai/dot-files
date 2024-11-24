@@ -2,7 +2,7 @@
 autoload -U colors && colors
 
 # Prompt
-source "$ZDOTDIR/prompt.zsh"
+[ -f "$ZDOTDIR/prompt.zsh" ] && source "$ZDOTDIR/prompt.zsh"
 
 export HISTFILE="$XDG_STATE_HOME/zsh/zsh_history"
 
@@ -32,16 +32,13 @@ _comp_options+=(globdots) # Include hidden files.
 # aliases
 [ -f "$ZDOTDIR/alias.zsh" ] && source "$ZDOTDIR/alias.zsh"
 
-# ranger
-[ -f "$ZDOTDIR/ranger.zsh" ] && source "$ZDOTDIR/ranger.zsh"
-
 # functions
 for function in $ZDOTDIR/functions/*.zsh; do
   source $function
 done
 
 # Git integration
-source "$ZDOTDIR/git-integration.zsh"
+[ -f "$ZDOTDIR/git-integration.zsh" ] && source "$ZDOTDIR/git-integration.zsh"
 
 # Other
 for file in $ZDOTDIR/other/*.zsh; do
