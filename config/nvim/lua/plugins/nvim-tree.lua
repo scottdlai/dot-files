@@ -14,6 +14,7 @@ require('nvim-tree').setup {
         file = false,
         folder = false,
       },
+      git_placement = 'after',
       glyphs = {
         modified = '*',
         git = {
