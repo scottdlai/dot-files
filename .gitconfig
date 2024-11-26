@@ -4,7 +4,7 @@
 [pull]
 	rebase = true
 [init]
-	defaultBranch = master
+	defaultBranch = main
 [alias]
 	lol = log --oneline --decorate --graph
 	stat = "!f() { git diff --stat --merge-base ${1:-$(git config init.defaultBranch)}; }; f"

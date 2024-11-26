@@ -1,6 +1,7 @@
 local Plug = vim.fn['plug#']
 
 vim.call('plug#begin')
+Plug('neoclide/coc.nvim', { branch = 'release' })
 Plug('nvim-tree/nvim-tree.lua')
 Plug('jiangmiao/auto-pairs')
 Plug('preservim/nerdcommenter')
@@ -19,7 +20,16 @@ Plug 'vim-airline/vim-airline'
 vim.call('plug#end')
 
 -- File tree (loading nvim-tree.lua)
-require('plugins-settings')
+require('plugins/nvim-tree')
+require('plugins/airline')
+
+-- NERDCommenter Settings
+vim.g.NERDSpaceDelims = 1
+vim.g.NERDToggleCheckAllLines = 1
+vim.g.NERDCompactSexyComs = 1
+
+-- Disable Shortcut for AutoPairs
+vim.g.AutoPairsShortcutToggle = ""
 
 -- personal settings
 require('personal')
