@@ -16,14 +16,13 @@ require('nvim-tree').setup {
       },
       git_placement = 'after',
       glyphs = {
-        modified = '*',
         git = {
-          unstaged = '[~]',
-          staged = '[+]',
-          untracked = '[#]',
-          unmerged = '[!]',
-          deleted = '[-]',
-          ignored = '[.]',
+          unstaged = '~',
+          staged = '+',
+          untracked = '*',
+          unmerged = '!',
+          deleted = '-',
+          ignored = 'o',
           renamed = '->'
         },
         folder = {
