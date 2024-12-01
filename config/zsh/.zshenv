@@ -11,6 +11,8 @@ export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 
 # Homebrew (brew doctor)
 export PATH="/opt/homebrew/bin:$PATH"
+# Postgresql 15
+export PATH="/opt/homebrew/opt/postgresql@15/bin:$PATH"
 
 # Ruby
 export RBENV_ROOT="$XDG_DATA_HOME/rbenv"

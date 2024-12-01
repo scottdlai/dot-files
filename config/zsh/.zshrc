@@ -47,4 +47,3 @@ done
 
 # Syntax highlighting
 [ -f "$ZDOTDIR/syntax-highlight.zsh" ] && source "$ZDOTDIR/syntax-highlight.zsh"
-
