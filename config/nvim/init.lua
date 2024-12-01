@@ -10,11 +10,11 @@ Plug 'antoinemadec/coc-fzf'
 Plug('sheerun/vim-polyglot')
 Plug('tpope/vim-fugitive')
 Plug('junegunn/goyo.vim')
+-- Quit buffer without removing splits
 Plug('moll/vim-bbye')
 Plug('christoomey/vim-tmux-navigator')
 -- Themes
 Plug('morhetz/gruvbox')
-Plug('arcticicestudio/nord-vim')
 -- Status bar
 Plug 'vim-airline/vim-airline'
 vim.call('plug#end')
