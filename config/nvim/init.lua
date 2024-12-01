@@ -25,15 +25,8 @@ vim.g.mapleader = ','
 -- File tree (loading nvim-tree.lua)
 require('plugins/nvim-tree')
 require('plugins/airline')
-
--- NERDCommenter Settings
-vim.g.NERDSpaceDelims = 1
-vim.g.NERDToggleCheckAllLines = 1
-vim.g.NERDCompactSexyComs = 1
-
--- Disable Shortcut for AutoPairs
-vim.g.AutoPairsShortcutToggle = ""
 require('plugins/coc')
+require('plugins/nerd-commeter')
 
 -- personal settings
 require('personal')
