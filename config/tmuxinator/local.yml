@@ -48,6 +48,6 @@ windows:
   - main:
       layout: 4184,231x58,0,0{115x58,0,0,1,115x58,116,0[115x29,116,0,2,115x28,116,30,4]}
       panes:
-        - # empty
-        - # empty
-        - # empty
+        -  # empty
+        -  # empty
+        -  # empty
