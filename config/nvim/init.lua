@@ -26,6 +26,7 @@ vim.g.mapleader = ','
 require('plugins/nvim-tree')
 require('plugins/airline')
 require('plugins/coc')
+require('plugins/goyo')
 require('plugins/nerd-commeter')
 
 -- personal settings
