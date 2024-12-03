@@ -22,12 +22,8 @@ vim.call('plug#end')
 -- Set leader key before loading plugins
 vim.g.mapleader = ','
 
--- File tree (loading nvim-tree.lua)
-require('plugins/nvim-tree')
-require('plugins/airline')
-require('plugins/coc')
-require('plugins/goyo')
-require('plugins/nerd-commeter')
+-- plugins
+require('plugins')
 
 -- personal settings
 require('scottdlai')

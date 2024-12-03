@@ -1,0 +1,6 @@
+require('plugins/nvim-tree')
+require('plugins/airline')
+require('plugins/coc')
+require('plugins/goyo')
+require('plugins/nerd-commeter')
+require('plugins/fzf')
