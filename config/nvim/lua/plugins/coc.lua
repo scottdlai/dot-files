@@ -148,7 +148,7 @@ vim.api.nvim_create_user_command('Prettier', 'call CocAction("runCommand", "pret
 vim.g.coc_fzf_preview = 'right,50%'
 vim.g.coc_fzf_opts = { '--layout=reverse' }
 
-function _G.toggle_outline()
+local function coc_toggle_outline()
   local winid = vim.fn['coc#window#find']('cocViewId', 'OUTLINE')
 
   if winid == -1 then
@@ -158,4 +158,4 @@ function _G.toggle_outline()
   end
 end
 
-vim.api.nvim_create_user_command('ToggleOutLine', ':call v:lua.toggle_outline()', {})
+vim.api.nvim_create_user_command('ToggleOutLine', coc_toggle_outline, {})
