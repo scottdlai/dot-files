@@ -1,4 +1,44 @@
 --- nvim tree
+function delete_default_keymaps(bufnr)
+  -- Remove default unused mappings
+  local delete_keymap_opt = { buffer = bufnr }
+  vim.keymap.del('n', 'g?', delete_keymap_opt)
+  vim.keymap.del('n', '<Tab>', delete_keymap_opt)
+  vim.keymap.del('n', '<BS>', delete_keymap_opt)
+  vim.keymap.del('n', '<C-]>', delete_keymap_opt)
+  vim.keymap.del('n', '<C-e>', delete_keymap_opt)
+  vim.keymap.del('n', '<C-r>', delete_keymap_opt)
+  vim.keymap.del('n', '<C-t>', delete_keymap_opt)
+  vim.keymap.del('n', '<C-v>', delete_keymap_opt)
+  vim.keymap.del('n', '<C-x>', delete_keymap_opt)
+
+  vim.keymap.del('n', '[c', delete_keymap_opt)
+  vim.keymap.del('n', ']c', delete_keymap_opt)
+  vim.keymap.del('n', '[e', delete_keymap_opt)
+  vim.keymap.del('n', ']e', delete_keymap_opt)
+
+  vim.keymap.del('n', 'D', delete_keymap_opt)
+  vim.keymap.del('n', 'L', delete_keymap_opt)
+  vim.keymap.del('n', 'M', delete_keymap_opt)
+  vim.keymap.del('n', 'O', delete_keymap_opt)
+  vim.keymap.del('n', 'P', delete_keymap_opt)
+  vim.keymap.del('n', 'S', delete_keymap_opt)
+
+  vim.keymap.del('n', 'a', delete_keymap_opt)
+  vim.keymap.del('n', 'bmv', delete_keymap_opt)
+  vim.keymap.del('n', 'bt', delete_keymap_opt)
+  vim.keymap.del('n', 'bd', delete_keymap_opt)
+  vim.keymap.del('n', 'c', delete_keymap_opt)
+  vim.keymap.del('n', 'd', delete_keymap_opt)
+  vim.keymap.del('n', 'e', delete_keymap_opt)
+  vim.keymap.del('n', 'f', delete_keymap_opt)
+  vim.keymap.del('n', 'ge', delete_keymap_opt)
+  vim.keymap.del('n', 'm', delete_keymap_opt)
+  vim.keymap.del('n', 'r', delete_keymap_opt)
+  vim.keymap.del('n', 'u', delete_keymap_opt)
+  vim.keymap.del('n', 'x', delete_keymap_opt)
+end
+
 require('nvim-tree').setup {
   view = {
     -- width = 35,
@@ -10,7 +50,7 @@ require('nvim-tree').setup {
 
   filters = {
     -- Never show .git folder
-    custom = { '.git' },
+    custom = { '^\\.git$' },
     -- Always show .env
     exclude = { '.env' },
   },
@@ -70,6 +110,9 @@ require('nvim-tree').setup {
     },
   },
 
+  help = {
+    sort_by = 'desc',
+  },
 
   ui = {
     confirm = {
@@ -113,42 +156,6 @@ require('nvim-tree').setup {
     -- close the tree if focus
     vim.keymap.set('n', '<leader>t', api.tree.close, opts('Close'))
 
-    -- Remove default unused mappings
-    local delete_keymap_opt = { buffer = bufnr }
-    vim.keymap.del('n', 'g?', delete_keymap_opt)
-    vim.keymap.del('n', '<Tab>', delete_keymap_opt)
-    vim.keymap.del('n', '<BS>', delete_keymap_opt)
-    vim.keymap.del('n', '<C-]>', delete_keymap_opt)
-    vim.keymap.del('n', '<C-e>', delete_keymap_opt)
-    vim.keymap.del('n', '<C-r>', delete_keymap_opt)
-    vim.keymap.del('n', '<C-t>', delete_keymap_opt)
-    vim.keymap.del('n', '<C-v>', delete_keymap_opt)
-    vim.keymap.del('n', '<C-x>', delete_keymap_opt)
-
-    vim.keymap.del('n', '[c', delete_keymap_opt)
-    vim.keymap.del('n', ']c', delete_keymap_opt)
-    vim.keymap.del('n', '[e', delete_keymap_opt)
-    vim.keymap.del('n', ']e', delete_keymap_opt)
-
-    vim.keymap.del('n', 'D', delete_keymap_opt)
-    vim.keymap.del('n', 'L', delete_keymap_opt)
-    vim.keymap.del('n', 'M', delete_keymap_opt)
-    vim.keymap.del('n', 'O', delete_keymap_opt)
-    vim.keymap.del('n', 'P', delete_keymap_opt)
-    vim.keymap.del('n', 'S', delete_keymap_opt)
-
-    vim.keymap.del('n', 'a', delete_keymap_opt)
-    vim.keymap.del('n', 'bmv', delete_keymap_opt)
-    vim.keymap.del('n', 'bt', delete_keymap_opt)
-    vim.keymap.del('n', 'bd', delete_keymap_opt)
-    vim.keymap.del('n', 'c', delete_keymap_opt)
-    vim.keymap.del('n', 'd', delete_keymap_opt)
-    vim.keymap.del('n', 'e', delete_keymap_opt)
-    vim.keymap.del('n', 'f', delete_keymap_opt)
-    vim.keymap.del('n', 'ge', delete_keymap_opt)
-    vim.keymap.del('n', 'm', delete_keymap_opt)
-    vim.keymap.del('n', 'r', delete_keymap_opt)
-    vim.keymap.del('n', 'u', delete_keymap_opt)
-    vim.keymap.del('n', 'x', delete_keymap_opt)
+    delete_default_keymaps(bufnr)
   end,
 }
