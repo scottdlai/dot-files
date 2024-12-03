@@ -12,7 +12,6 @@ keymap.set({ 'n', 'v', 'o' }, 'gP', '"+P')
 keymap.set({ 'n', 'v', 'o' }, 'B', '^')
 keymap.set({ 'n', 'v', 'o' }, 'E', '$')
 keymap.set({ 'n', 'v', 'o' }, ';', ':')
-keymap.set({ 'n', 'v', 'o' }, 'gq', ':Bdelete<CR>')
 -- Have iterm2 / terminal send +/ when hit cmd + /
 keymap.set({ 'n', 'v', 'o' }, '+/', '<Plug>NERDCommenterToggle', { silent = true })
 
@@ -63,7 +62,8 @@ keymap.set('v', 'K', ":m '<-2<CR>gv=gv", { noremap = true })
 keymap.set('x', 'p', '"_dP', { noremap = true })
 
 -- leader keybinds
+keymap.set({ 'n' }, '<leader>w', ':Bdelete<CR>', { silent = true })
+keymap.set({ 'n' }, '<leader>qa', ':bufdo :Bdelete<CR>', { silent = true })
 keymap.set({ 'n' }, '<leader>fa', ':FindAllInProject<CR>', { silent = true })
 keymap.set({ 'n' }, '<leader>gy', ':Goyo<CR>', { silent = true })
-keymap.set({ 'n' }, '<leader>gst', ':GFiles?<CR>', { silent = true })
-keymap.set({ 'n' }, '<leader>gds', ':Ghdiffsplit<CR>', { silent = true })
+keymap.set({ 'n' }, '<leader>gg', ':vert G<CR>', { silent = true })
