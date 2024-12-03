@@ -5,7 +5,7 @@ vim.cmd([[
     let g:airline_symbols = {}
   endif
   " let g:airline_symbols.maxlinenr = ''
-  " let g:airline_symbols.branch = ''
+  let g:airline_symbols.branch = 'λ'
 ]])
 
 -- disable nerd icons
