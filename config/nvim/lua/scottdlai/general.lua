@@ -6,6 +6,8 @@ local g = vim.g
 opt.undodir = os.getenv('XDG_STATE_HOME') .. '/vim-undodir/'
 opt.undofile = true
 
+opt.timeoutlen = 5000
+
 -- Mouse and UI Settings
 opt.mouse = 'a'
 opt.cmdheight = 2
@@ -36,6 +38,10 @@ opt.expandtab = true
 opt.shiftround = false
 opt.listchars = { tab = '| ', trail = '~' }
 opt.list = true
+
+opt.foldmethod = 'indent'
+-- don't fold everything when open
+opt.foldlevelstart = 99
 
 -- Always keep at least 12 lines below current cursor
 opt.scrolloff = 12

@@ -6,7 +6,7 @@ Plug('nvim-tree/nvim-tree.lua')
 Plug('preservim/nerdcommenter')
 Plug('junegunn/fzf', { ['do'] = vim.fn['fzf#install'] })
 Plug('junegunn/fzf.vim')
-Plug 'antoinemadec/coc-fzf'
+Plug('antoinemadec/coc-fzf')
 Plug('sheerun/vim-polyglot')
 Plug('tpope/vim-fugitive')
 Plug('junegunn/goyo.vim')
@@ -30,4 +30,4 @@ require('plugins/goyo')
 require('plugins/nerd-commeter')
 
 -- personal settings
-require('personal')
+require('scottdlai')

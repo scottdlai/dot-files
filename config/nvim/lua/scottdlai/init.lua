@@ -1,5 +1,5 @@
-require('personal/general')
-require('personal/keybind')
+require('scottdlai/general')
+require('scottdlai/keybind')
 
 --- Filetype-Specific Settings ---
 -- Files that use 2 spaces instead of 4
@@ -16,8 +16,8 @@ vim.api.nvim_create_autocmd('FileType', {
       'css',
     },
     callback = function()
-      vim.cmd('set tabstop=2')
-      vim.cmd('set shiftwidth=2')
+      vim.cmd('setlocal tabstop=2')
+      vim.cmd('setlocal shiftwidth=2')
 
       vim.b.coc_root_patterns = {
         '.git',
