@@ -37,9 +37,6 @@ for function in $ZDOTDIR/functions/*.zsh; do
   source $function
 done
 
-# Git integration
-[ -f "$ZDOTDIR/git-integration.zsh" ] && source "$ZDOTDIR/git-integration.zsh"
-
 # Other
 for file in $ZDOTDIR/other/*.zsh; do
   source $file
