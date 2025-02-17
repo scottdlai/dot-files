@@ -18,6 +18,7 @@ Plug('nvim-treesitter/nvim-treesitter-textobjects')
 
 -- utilities
 Plug('tpope/vim-fugitive')
+Plug('airblade/vim-gitgutter')
 Plug('junegunn/goyo.vim')
 Plug('echasnovski/mini.surround')
 -- quit buffer without removing splits
