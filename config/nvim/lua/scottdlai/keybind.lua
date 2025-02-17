@@ -87,7 +87,7 @@ keymap.set('n', '<leader>d<Space>', 'mz:%s/\\s\\+$//g<CR>:noh<CR>`z:delm z<CR>',
 
 keymap.set('n', '<leader>T', ':NvimTreeFindFile<CR>', { silent = true })
 
-keymap.set('n', '<leader>z', ':Goyo<CR>', { silent = true })
+keymap.set('n', '<leader>Z', ':Goyo<CR>', { silent = true })
 
 keymap.set('n', '<leader>bd', ':Bdelete<CR>', { silent = true })
 keymap.set('n', '<leader>bw', ':Bwipeout<CR>', { silent = true })
