@@ -3,5 +3,17 @@
   "diagnostic.errorSign": "E",
   "diagnostic.warningSign": "W",
   "diagnostic.hintSign": "H",
-  "diagnostic.infoSign": "I"
+  "diagnostic.infoSign": "I",
+  "tailwindCSS.includeLanguages": {
+    "eelixir": "html",
+    "elixir": "html",
+    "eruby": "html",
+    "html.twig": "html",
+    "plaintext": "javascript"
+  },
+  "tailwindCSS.experimental.classRegex": [
+    ["cva\\(?([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
+    ["cx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"]
+  ],
+  "prettier.singleQuote": true
 }

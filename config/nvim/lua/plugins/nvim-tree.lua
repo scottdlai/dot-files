@@ -50,7 +50,7 @@ require('nvim-tree').setup {
 
   filters = {
     -- Never show .git folder
-    custom = { '^\\.git$' },
+    custom = { '^\\.git$', 'node_modules' },
     -- Always show .env
     exclude = { '.env' },
   },
@@ -142,6 +142,7 @@ require('nvim-tree').setup {
     vim.keymap.set('n', '|', api.node.open.vertical, opts('Open: Vertical Split'))
     vim.keymap.set('n', '-', api.node.open.horizontal, opts('Open: Horizontal Split'))
     vim.keymap.set('n', '<CR>', api.node.open.no_window_picker, opts('Open: No Window Picker'))
+    vim.keymap.set('n', '<2-LeftMouse>', api.node.open.no_window_picker, opts('Open: No Window Picker'))
     vim.keymap.set('n', 'o', api.node.open.edit, opts('Open'))
 
     vim.keymap.set('n', 'i', api.fs.create, opts('Create File or Directory'))
@@ -150,12 +151,15 @@ require('nvim-tree').setup {
     vim.keymap.set('n', 'mv', api.fs.cut, opts('Cut'))
     vim.keymap.set('n', 'cp', api.fs.copy.node, opts('Copy'))
 
-    vim.keymap.set('n', 'J', api.node.navigate.sibling.next, opts('Next Sibling'))
-    vim.keymap.set('n', 'K', api.node.navigate.sibling.prev, opts('Prev Sibling'))
+    vim.keymap.set('n', '{', api.node.navigate.sibling.prev, opts('Prev Sibling'))
+    vim.keymap.set('n', '}', api.node.navigate.sibling.next, opts('Next Sibling'))
 
     -- close the tree if focus
-    vim.keymap.set('n', '<leader>t', api.tree.close, opts('Close'))
+    vim.keymap.set('n', '<leader>T', api.tree.close, opts('Close'))
 
     delete_default_keymaps(bufnr)
+
+    -- Makes special files yellow
+    vim.cmd('highlight! link NvimTreeSpecialFile Yellow')
   end,
 }

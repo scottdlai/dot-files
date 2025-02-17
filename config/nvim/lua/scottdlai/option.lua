@@ -6,18 +6,23 @@ local g = vim.g
 opt.undodir = os.getenv('XDG_STATE_HOME') .. '/vim-undodir/'
 opt.undofile = true
 
+-- 5 seconds
 opt.timeoutlen = 5000
 
--- Mouse and UI Settings
+-- mouse and UI Settings
 opt.mouse = 'a'
 opt.cmdheight = 2
-vim.cmd('highlight Comment cterm=italic gui=italic')
 
 -- themes
 opt.termguicolors = true
 opt.background = 'dark'
-g.gruvbox_contrast_dark = 'medium'
-vim.cmd('silent! colorscheme gruvbox')
+g.gruvbox_material_foreground = 'original'
+g.gruvbox_material_statusline_style = 'original'
+g.gruvbox_material_background = 'medium'
+g.gruvbox_material_ui_contrast = 'high'
+g.gruvbox_material_visual = 'reverse'
+g.gruvbox_material_transparent_background = 1
+vim.cmd('silent! colorscheme gruvbox-material')
 -- Status line should show the mode anyways
 opt.showmode = false
 
@@ -26,9 +31,10 @@ opt.number = true
 opt.relativenumber = true
 opt.colorcolumn = '80'
 opt.cursorline = true
+opt.signcolumn = "yes:3"
 
 -- Whitespace Settings
-opt.wrap = false
+opt.wrap = true
 opt.textwidth = 80
 opt.formatoptions = 'tcqrn1'
 opt.tabstop = 4
@@ -36,10 +42,12 @@ opt.shiftwidth = 4
 opt.softtabstop = 4
 opt.expandtab = true
 opt.shiftround = false
-opt.listchars = { tab = '| ', trail = '~' }
+opt.listchars = { tab = '| ', lead = '·', trail = '~' }
 opt.list = true
 
-opt.foldmethod = 'indent'
+opt.foldmethod = 'expr'
+opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+-- opt.foldmethod = 'indent'
 -- don't fold everything when open
 opt.foldlevelstart = 99
 
@@ -50,3 +58,9 @@ opt.scrolloff = 12
 opt.hidden = true
 opt.splitbelow = true
 opt.splitright = true
+
+-- Make jumplist behave like a stack
+opt.jumpoptions = 'stack'
+
+-- increment alphabets
+opt.nrformats:append('alpha')

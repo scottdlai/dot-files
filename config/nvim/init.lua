@@ -1,26 +1,39 @@
 local Plug = vim.fn['plug#']
 
 vim.call('plug#begin')
+-- intellisense and auto-complete
 Plug('neoclide/coc.nvim', { branch = 'release' })
+Plug('antoinemadec/coc-fzf')
+
 Plug('nvim-tree/nvim-tree.lua')
-Plug('preservim/nerdcommenter')
+
+-- fzf
 Plug('junegunn/fzf', { ['do'] = vim.fn['fzf#install'] })
 Plug('junegunn/fzf.vim')
-Plug('antoinemadec/coc-fzf')
+
+-- syntax stuffs
 Plug('sheerun/vim-polyglot')
+Plug('nvim-treesitter/nvim-treesitter', { ['do'] = ':TSUpdate' })
+Plug('nvim-treesitter/nvim-treesitter-textobjects')
+
+-- utilities
 Plug('tpope/vim-fugitive')
 Plug('junegunn/goyo.vim')
--- Quit buffer without removing splits
+Plug('echasnovski/mini.surround')
+-- quit buffer without removing splits
 Plug('moll/vim-bbye')
 Plug('christoomey/vim-tmux-navigator')
--- Themes
-Plug('morhetz/gruvbox')
--- Status bar
-Plug 'vim-airline/vim-airline'
+
+-- themes
+-- this one supports treesitter
+Plug('sainnhe/gruvbox-material')
+
+-- status bar
+Plug('vim-airline/vim-airline')
 vim.call('plug#end')
 
--- Set leader key before loading plugins
-vim.g.mapleader = ','
+-- set leader key before loading plugins
+vim.g.mapleader = ' '
 
 -- plugins
 require('plugins')
