@@ -1,17 +1,42 @@
 [user]
 	name = Scott Lai
 	email = tuonglai3602@gmail.com
-[pull]
-	rebase = true
+
 [init]
 	defaultBranch = main
-[alias]
-	lol = log --oneline --decorate --graph
-	stat = "!f() { git diff --stat --merge-base ${1:-$(git config init.defaultBranch)}; }; f"
-	bf = branch --format='%(HEAD) %(if)%(HEAD)%(then)%(color:bold green)%(end)%(refname:short)%(color:reset): %(color:yellow)%(subject) %(color:cyan)<%(authorname)> %(color:red)(%(committerdate:relative))' --sort=-committerdate
-	uncommit = "!f() { git reset --soft ${1:-HEAD~}; }; f"
-	unstage = reset HEAD
-	standup = "!git log --reverse --since=yesterday --pretty='%s' --author=$(git config --get user.email)"
-	unfuck = reset --hard HEAD
+
+[diff]
+	algorithm = histogram
+	mnemonicprefix = true
+
+[pull]
+	rebase = true
+	ff = only
+
+[push]
+	autoSetupRemote = true
+
 [rebase]
 	autoStash = true
+
+[format]
+	pretty = %C(yellow bold)%h%C(reset)%C(auto)%d%C(reset) %s %Cgreen(%cr) %C(bold blue)<%an>%Creset
+
+[merge]
+	conflictStyle = diff3
+
+[alias]
+	lol = log --graph --decorate
+
+	stat = "!f() { git diff --stat --merge-base ${1:-$(git config init.defaultBranch)}; }; f"
+
+	bf = branch --format='%(color:bold yellow)%(HEAD) %(if)%(HEAD)%(then)%(color:yellow)%(else)%(color:nobold)%(end)%(refname:short)%(color:reset) %(subject) %(color:green nobold)(%(committerdate:relative)) %(color:bold blue)<%(authorname)>' --sort=-committerdate
+
+	uncommit = "!f() { git reset --soft ${1:-HEAD~}; }; f"
+
+	unstage = reset HEAD
+
+	standup = "!git log --reverse --since=yesterday --pretty='%s' --author=$(git config --get user.email)"
+
+	unfuck = reset --hard HEAD
+
