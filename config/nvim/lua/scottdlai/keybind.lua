@@ -67,7 +67,6 @@ keymap.set('n', '<C-f>', ':BLines<CR>', { silent = true })
 keymap.set('n', '<leader>F', ':FindAllInProject<CR>', { silent = true })
 
 -- Integration with Tmux navigation
-vim.g.tmux_navigator_no_mappings = 1 -- disable plugin default keybind
 keymap.set('n', '<C-w>h', ':TmuxNavigateLeft<CR>', { silent = true })
 keymap.set('n', '<C-w>j', ':TmuxNavigateDown<CR>', { silent = true })
 keymap.set('n', '<C-w>k', ':TmuxNavigateUp<CR>', { silent = true })
@@ -94,3 +93,5 @@ keymap.set('n', '<leader>bw', ':Bwipeout<CR>', { silent = true })
 keymap.set('n', '<leader>qa', ':bufdo :bwipeout<CR>:clearjumps<CR>', { silent = true })
 
 keymap.set('n', '<leader>G', ':tab G<CR>', { silent = true })
+keymap.set({ 'n', 'v', 'o' }, '<leader>gs', ':GitGutterStageHunk<CR>', { silent = true })
+keymap.set({ 'n', 'v', 'o' }, '<leader>gu', ':GitGutterUndoHunk<CR>', { silent = true })
