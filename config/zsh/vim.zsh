@@ -12,7 +12,14 @@ bindkey -M menuselect 'k' vi-up-line-or-history
 bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
 # https://superuser.com/questions/351499/how-to-switch-comfortably-to-vi-command-mode-on-the-zsh-command-line
-bindkey -M viins '^j' vi-cmd-mode
+# bindkey -M viins '^j' vi-cmd-mode
+
+# unmap Control-j https://zsh.sourceforge.io/Guide/zshguide04.html#l95
+bindkey -r '^j'
+
+# bind ctrl-j and ctrl-k to move up and down in command history
+bindkey -M viins '^j' down-line-or-search
+bindkey -M viins '^k' up-line-or-search
 
 # Change cursor shape for different vi modes.
 function zle-keymap-select {

@@ -4,7 +4,16 @@ autoload -U colors && colors
 # Prompt
 [ -f "$ZDOTDIR/prompt.zsh" ] && source "$ZDOTDIR/prompt.zsh"
 
+# History
 export HISTFILE="$XDG_STATE_HOME/zsh/zsh_history"
+export HISTDUP="erase"
+setopt appendhistory
+setopt sharehistory
+setopt hist_ignore_space
+setopt hist_ignore_all_dups
+setopt hist_save_no_dups
+setopt hist_ignore_dups
+setopt hist_find_no_dups
 
 export VISUAL="nvim"
 export EDITOR=$VISUAL
@@ -17,7 +26,7 @@ export ZSH_COMPDUMP="$XDG_STATE_HOME/zsh/zcompdump"
 
 # Basic auto/tab complete:
 export FPATH="$FPATH:$XDG_DATA_HOME/completions"
-autoload -U compinit
+autoload -Uz compinit
 zstyle ':completion:*' menu select
 zmodload zsh/complist
 compinit -d $ZSH_COMPDUMP

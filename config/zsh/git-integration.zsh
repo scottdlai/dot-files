@@ -1,5 +1,4 @@
 # Git autocomplete
-autoload -Uz compinit && compinit
 
 # source: https://github.com/rotsix/dotfiles/blob/master/zsh/.zsh.d/prompt.zsh
 # Global settings
@@ -49,7 +48,6 @@ function mnml_wrap {
 }
 
 # Setup
-autoload -U colors && colors
 setopt prompt_subst
 
 RPROMPT='$(mnml_wrap MNML_RPROMPT)'

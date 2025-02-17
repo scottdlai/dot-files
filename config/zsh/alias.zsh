@@ -10,4 +10,3 @@ alias vimdiff='nvim -d'
 alias du='du -h'
 alias df='df -h'
 alias mux='tmuxinator'
-

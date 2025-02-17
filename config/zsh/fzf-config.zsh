@@ -27,14 +27,18 @@ local color0F='#d65d0e'
 
 export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS"\
 " --color=bg+:$color01,bg:$color00,spinner:$color0C,hl:$color0D"\
-" --color=fg:$color04,header:$color0D,info:$color0A,pointer:$color0C"\
+" --color=fg:$color04,header:$color0D,info:$color0A,pointer:$color0D"\
 " --color=marker:$color0C,fg+:$color06,prompt:$color0A,hl+:$color0D"
 
 }
 
 _gen_fzf_default_opts
 
-export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --layout reverse --tmux center"
+export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --layout reverse --tmux center,60%"
+
+export FZF_ALT_C_OPTS="\
+  --walker-skip .git,node_modules,build,dist,target \
+  --preview 'ls -AF --color=always {}'"
 
 # Map Ctrl-p to launch fzf cd widget
 bindkey '^p' fzf-cd-widget
