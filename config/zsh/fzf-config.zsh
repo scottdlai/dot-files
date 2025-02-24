@@ -34,10 +34,11 @@ export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS"\
 
 _gen_fzf_default_opts
 
-export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --layout reverse --tmux center,60%"
+export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --style full --layout reverse --tmux center,60%"
 
 export FZF_ALT_C_OPTS="\
-  --walker-skip .git,node_modules,build,dist,target \
+  --walker-root=$HOME \
+  --walker-skip .git,node_modules,build,dist,target,Library \
   --preview 'ls -AF --color=always {}'"
 
 # Map Ctrl-p to launch fzf cd widget
