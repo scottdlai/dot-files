@@ -57,7 +57,7 @@ keymap.set('n', 'N', 'Nzzzv', { noremap = true, silent = true })
 
 -- Replace word under cursor
 keymap.set('n', '<C-s>', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gIc<Left><Left><Left><Left>]])
-keymap.set('x', '<C-s>', [["0y:%s/<C-r>0/<C-r>0/gci<Left><Left><Left><Left>]])
+keymap.set('v', '<C-s>', [["0y:%s/<C-r>0/<C-r>0/gci<Left><Left><Left><Left>]])
 
 -- fzf mappings
 keymap.set('n', '<C-b>', ':Buffers<CR>', { silent = true })
@@ -65,6 +65,7 @@ keymap.set('n', '<C-p>', ':Files<CR>', { silent = true })
 keymap.set('n', '<C-k>', ':CocFzfList outline<CR>', { silent = true })
 keymap.set('n', '<C-f>', ':BLines<CR>', { silent = true })
 keymap.set('n', '<leader>F', ':FindAllInProject<CR>', { silent = true })
+keymap.set('v', '<leader>F', '"0y:FindAllInProject <C-r>0<CR>', { silent = true })
 
 -- Integration with Tmux navigation
 keymap.set('n', '<C-w>h', ':TmuxNavigateLeft<CR>', { silent = true })
