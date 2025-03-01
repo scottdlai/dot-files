@@ -1,6 +1,6 @@
 # /Users/scott/.config/tmuxinator/local.yml
 
-name: local
+name: config
 root: ~/
 
 # Optional tmux socket
@@ -36,7 +36,7 @@ root: ~/
 # tmux_command: byobu
 
 # Specifies (by name or index) which window will be selected on project startup. If not set, the first window is used.
-# startup_window: editor
+startup_window: main
 
 # Specifies (by index) which pane of the specified window will be selected on project startup. If not set, the first pane is used.
 # startup_pane: 1
@@ -45,7 +45,9 @@ root: ~/
 # attach: false
 
 windows:
-  - jobs:
-      root: ~/Documents/jobs/
-  - schools:
-      root: ~/Documents/schools/
+  - main:
+      layout: 4184,231x58,0,0{115x58,0,0,1,115x58,116,0[115x29,116,0,2,115x28,116,30,4]}
+      panes:
+        -  # empty
+        -  # empty
+        -  # empty
