@@ -21,3 +21,8 @@ export PATH="$PATH:$RBENV_ROOT"
 # Java
 export JAVA_HOME="/opt/homebrew/opt/openjdk@17"
 export PATH="$PATH:$JAVA_HOME/bin"
+
+# Pyenv
+export PYENV_ROOT="$XDG_STATE_HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init - zsh)"
