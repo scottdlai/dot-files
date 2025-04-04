@@ -19,16 +19,20 @@
 [rebase]
 	autoStash = true
 
+[fetch]
+	prune = true
+
 [format]
 	pretty = %C(yellow bold)%h%C(reset)%C(auto)%d%C(reset) %s %Cgreen(%cr) %C(bold blue)<%an>%Creset
 
 [merge]
 	conflictStyle = diff3
+	tool = nvimdiff
 
 [alias]
 	lol = log --graph --decorate
 
-	stat = "!f() { git diff --stat --merge-base ${1:-$(git config init.defaultBranch)}; }; f"
+	stat = "!f() { git diff --stat $(git merge-base HEAD ${1:-origin/HEAD}); }; f"
 
 	bf = branch --format='%(color:bold yellow)%(HEAD) %(if)%(HEAD)%(then)%(color:yellow)%(else)%(color:nobold)%(end)%(refname:short)%(color:reset) %(subject) %(color:green nobold)(%(committerdate:relative)) %(color:bold blue)<%(authorname)>' --sort=-committerdate
 
@@ -40,3 +44,11 @@
 
 	unfuck = reset --hard HEAD
 
+	review = "!f() { local branch_name=${1:-origin/HEAD}; nvim -p $(git diff --name-only $(git merge-base HEAD $branch_name)) -c \"tabdo Gvdiffsplit $branch_name | wincmd h\" -c \"call feedkeys('1gt')\"; }; f"
+
+[mergetool "nvimdiff"]
+	cmd = nvim -d -c 'wincmd l' "$LOCAL" "$MERGED" "$REMOTE"
+
+[mergetool]
+	keepBackup = false
+	prompt = true
