@@ -42,7 +42,7 @@ vim.api.nvim_create_autocmd('FileType', {
   desc = 'Files that use tabs',
   group = vim.api.nvim_create_augroup('File that uses tabs', {}),
   callback = function()
-    vim.opt.expandtab = false
+    vim.bo.expandtab = false
   end,
 })
 
@@ -52,4 +52,15 @@ vim.api.nvim_create_autocmd('FileType', {
   callback = function()
     vim.keymap.set('n', 'q', ':q<CR>', { noremap = true, silent = true, buffer = true })
   end,
+})
+
+vim.api.nvim_create_autocmd("BufEnter", {
+    pattern = "*",
+    desc = 'Remap q to exit in diff mode',
+    group = vim.api.nvim_create_augroup('diff mode mappings', {}),
+    callback = function()
+        if vim.opt.diff:get() then
+            vim.keymap.set("n", "q", ":qa<CR>", { noremap = true, silent = true, buffer = true })
+        end
+    end,
 })

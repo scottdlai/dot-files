@@ -25,6 +25,8 @@ g.gruvbox_material_transparent_background = 1
 vim.cmd('silent! colorscheme gruvbox-material')
 -- Status line should show the mode anyways
 opt.showmode = false
+-- only show 1 status line if there is split
+opt.laststatus = 3
 
 -- Line Numbers
 opt.number = true

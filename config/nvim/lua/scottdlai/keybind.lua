@@ -23,7 +23,7 @@ keymap.set({ 'n', 'v', 'o' }, ',', [[getcharsearch().forward ? ',' : ';']], char
 -- keymap.set({ 'n', 'v', 'o' }, '<CR>', ':', { noremap = true })
 
 -- Normal mode
-keymap.set('n', 'g?', ':Helptags<CR>', { noremap = true, silent = true })
+keymap.set('n', '<F1>', ':Helptags<CR>', { noremap = true, silent = true })
 
 -- tab is ctrl-i, map shift tab to ctrl-o
 keymap.set('n', '<S-Tab>', '<C-o>', { noremap = true, silent = true })
@@ -60,12 +60,13 @@ keymap.set('n', '<C-s>', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gIc<Left><Left><Left><L
 keymap.set('v', '<C-s>', [["0y:%s/<C-r>0/<C-r>0/gci<Left><Left><Left><Left>]])
 
 -- fzf mappings
-keymap.set('n', '<C-b>', ':Buffers<CR>', { silent = true })
 keymap.set('n', '<C-p>', ':Files<CR>', { silent = true })
 keymap.set('n', '<C-k>', ':CocFzfList outline<CR>', { silent = true })
-keymap.set('n', '<C-f>', ':BLines<CR>', { silent = true })
-keymap.set('n', '<leader>F', ':FindAllInProject<CR>', { silent = true })
-keymap.set('v', '<leader>F', '"0y:FindAllInProject <C-r>0<CR>', { silent = true })
+keymap.set('n', '<C-f>', ':Rg<CR>', { silent = true })
+keymap.set('v', '<C-f>', '"0y:Rg <C-r>0<CR>', { silent = true })
+
+keymap.set('n', '<C-\\>', ':Windows<CR>', { silent = true })
+keymap.set('n', '<leader>B', ':Buffers<CR>', { silent = true })
 
 -- Integration with Tmux navigation
 keymap.set('n', '<C-w>h', ':TmuxNavigateLeft<CR>', { silent = true })
@@ -91,8 +92,11 @@ keymap.set('n', '<leader>Z', ':Goyo<CR>', { silent = true })
 
 keymap.set('n', '<leader>bd', ':Bdelete<CR>', { silent = true })
 keymap.set('n', '<leader>bw', ':Bwipeout<CR>', { silent = true })
-keymap.set('n', '<leader>qa', ':bufdo :bwipeout<CR>:clearjumps<CR>', { silent = true })
+keymap.set('n', '<leader>Q', ':bufdo :bwipeout<CR>:clearjumps<CR>', { silent = true })
 
 keymap.set('n', '<leader>G', ':tab G<CR>', { silent = true })
 keymap.set({ 'n', 'v', 'o' }, '<leader>gs', ':GitGutterStageHunk<CR>', { silent = true })
 keymap.set({ 'n', 'v', 'o' }, '<leader>gu', ':GitGutterUndoHunk<CR>', { silent = true })
+
+keymap.set('n', '<leader>gL', ':diffget LOCAL<CR>', { silent = true })
+keymap.set('n', '<leader>gR', ':diffget REMOTE<CR>', { silent = true })

@@ -33,6 +33,7 @@ require('nvim-treesitter.configs').setup({
         ['ic'] = { query = '@class.inner', desc = 'Select inner part of a class region' },
         ['ac'] = { query = '@class.outer', desc = 'Select outer part of a class region' },
         ['is'] = { query = '@block.inner', desc = 'Select inner part of a scope region' },
+        ['as'] = { query = '@block.outer', desc = 'Select outer part of a scope region' },
       },
     },
 
