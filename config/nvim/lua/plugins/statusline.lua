@@ -12,6 +12,7 @@ vim.cmd([[
 vim.g.airline_symbols_ascii = 1
 
 vim.g['airline#extensions#tabline#enabled'] = 1
+vim.g['airline#extensions#tabline#formatter'] = 'short_path_improved'
 
 vim.g['airline#extensions#hunks#enabled'] = 0
 vim.g['airline#extensions#fzf#enabled'] = 1
