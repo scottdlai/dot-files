@@ -11,7 +11,7 @@ NORMAL="${NORMAL:-15}"
 
 # Components
 function mnml_git {
-  local statc="%{\e[0;3${NORMAL}m%}" # assume clean
+    local statc="%{\e[0;3${NORMAL}m%}" # assume clean
     local bname="$(git rev-parse --abbrev-ref HEAD 2> /dev/null)"
 
     if [ -n "$bname" ]; then
