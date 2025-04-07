@@ -1,5 +1,7 @@
 local Plug = vim.fn['plug#']
 
+local fzf_install = vim.fn['fzf#install']
+
 vim.call('plug#begin')
 -- intellisense and auto-complete
 Plug('neoclide/coc.nvim', { branch = 'release' })
@@ -8,7 +10,7 @@ Plug('antoinemadec/coc-fzf')
 Plug('nvim-tree/nvim-tree.lua')
 
 -- fzf
-Plug('junegunn/fzf', { ['do'] = vim.fn['fzf#install'] })
+Plug('junegunn/fzf', { ['do'] = function() fzf_install() end })
 Plug('junegunn/fzf.vim')
 
 -- syntax stuffs

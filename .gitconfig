@@ -46,6 +46,10 @@
 
 	review = "!f() { local branch_name=${1:-origin/HEAD}; nvim -p $(git diff --name-only $(git merge-base HEAD $branch_name)) -c \"tabdo Gvdiffsplit $branch_name | wincmd h\" -c \"call feedkeys('1gt')\"; }; f"
 
+	logf = "!zsh -c _git_logf"
+
+	reflogf = "!zsh -c _git_reflogf"
+
 [mergetool "nvimdiff"]
 	cmd = nvim -d -c 'wincmd l' "$LOCAL" "$MERGED" "$REMOTE"
 

@@ -5,7 +5,7 @@ local function rg_ignore_file_name(opts)
 
   local args = opts.args
   local prompt = 'Rg> '
-  local header = ':: \x1b[93mCTRL-F\x1b[0m to toggle File name search, \x1b[93mCTRL-R\x1b[0m to re-trigger rg'
+  local header = ':: \x1b[93mCTRL-F\x1b[0m to toggle File name search / \x1b[93mCTRL-R\x1b[0m to re-trigger rg'
 
   local include_file_name_label = " File name + Text "
   local exclude_file_name_label = " Text "
@@ -26,9 +26,9 @@ local function rg_ignore_file_name(opts)
     search_scope = '.'
   end
 
-  local ctrl_f_bind = string.format('ctrl-f:transform-nth([[ $FZF_NTH = "4.." ]] && echo "1.." || echo "4..")+transform-border-label([[ $FZF_NTH = "4.." ]] && echo "%s" || echo "%s")', exclude_file_name_label, include_file_name_label)
+  local ctrl_f_bind = string.format('ctrl-f:transform-nth([[ $FZF_NTH = "4.." ]] && echo "1.." || echo "4..")+transform-list-label([[ $FZF_NTH = "4.." ]] && echo "%s" || echo "%s")', exclude_file_name_label, include_file_name_label)
 
-  local ctrl_r_bind = string.format('ctrl-r:reload(%s {q})+change-nth(1..)+change-border-label(%s)', rg, include_file_name_label)
+  local ctrl_r_bind = string.format('ctrl-r:reload(%s {q} || true)+change-nth(1..)+change-list-label(%s)', rg, include_file_name_label)
 
   local options = {
     '--prompt', prompt,
@@ -36,7 +36,7 @@ local function rg_ignore_file_name(opts)
     '--delimiter', delimiter,
     '--nth', nth,
     '--wrap',
-    '--border-label', label,
+    '--list-label', label,
     '--bind', ctrl_f_bind,
     '--bind', ctrl_r_bind,
     -- clear query after reload rg
@@ -61,12 +61,12 @@ local function get_files_options()
   local rg_disable_git_command = "rg --files --hidden --no-ignore --glob '!{.git,node_modules}/' | sort"
 
   -- https://github.com/junegunn/fzf/blob/master/ADVANCED.md#toggling-with-a-single-key-binding
-  local ctrl_g_bind = string.format('ctrl-g:transform:[[ $FZF_BORDER_LABEL =~ "All" ]] && echo "reload(%s)+change-border-label(%s)" || echo "reload(%s)+change-border-label(%s)"', rg_enable_git_command, enable_git_label, rg_disable_git_command, disable_git_label)
+  local ctrl_g_bind = string.format('ctrl-g:transform:[[ $FZF_LIST_LABEL =~ "All" ]] && echo "reload(%s)+change-list-label(%s)" || echo "reload(%s)+change-list-label(%s)"', rg_enable_git_command, enable_git_label, rg_disable_git_command, disable_git_label)
 
   local start_bind = string.format('start:reload(%s)', rg_enable_git_command)
 
   local files_options = {
-    '--border-label', enable_git_label,
+    '--list-label', enable_git_label,
     '--scheme', 'path',
     '--filepath-word',
     '--header', header,
@@ -79,9 +79,9 @@ local function get_files_options()
 end
 
 vim.api.nvim_create_user_command("Rg", rg_ignore_file_name, {
-    bang = true,
-    nargs = "*",
-  })
+  bang = true,
+  nargs = "*",
+})
 
 if os.getenv('TMUX') then
   vim.g.fzf_layout = { tmux = 'center,80%,80%' }
@@ -90,21 +90,21 @@ else
 end
 
 local function get_coc_fzf_opts()
-  local query_top = 'echo \'change-query(!^| )+change-border-label( Top )\''
-  local query_functions = 'echo "change-query([Function] | [Method] | [Constructor] )+change-border-label( Function )"'
-  local query_classes = 'echo "change-query([Class] | [Interface] | [Property] )+change-border-label( Class )"'
-  local query_all = 'echo "clear-query+change-border-label( All )"'
+  local query_top = 'echo \'change-query(!^| )+change-list-label( Top )\''
+  local query_functions = 'echo "change-query([Function] | [Method] | [Constructor] )+change-list-label( Function )"'
+  local query_classes = 'echo "change-query([Class] | [Interface] | [Property] )+change-list-label( Class )"'
+  local query_all = 'echo "clear-query+change-list-label( All )"'
 
-  local toggle_symbols_bind = string.format([=[ctrl-g:transform:if [[ "$FZF_BORDER_LABEL" =~ "All" ]]; then %s; elif [[ "$FZF_BORDER_LABEL" =~ "Top" ]]; then %s; elif [[ "$FZF_BORDER_LABEL" =~ "Function" ]]; then %s; else %s; fi]=], query_top, query_functions, query_classes, query_all)
+  local toggle_symbols_bind = string.format([=[ctrl-g:transform:if [[ "$FZF_LIST_LABEL" =~ "All" ]]; then %s; elif [[ "$FZF_LIST_LABEL" =~ "Top" ]]; then %s; elif [[ "$FZF_LIST_LABEL" =~ "Function" ]]; then %s; else %s; fi]=], query_top, query_functions, query_classes, query_all)
 
   return {
     '--layout', 'reverse',
-    '--border-label', ' All ',
+    '--list-label', ' All ',
     '--header', ':: \x1b[93mCTRL-G\x1b[0m to toggle between symbols',
     -- don't sort the result to preserve outline
     '--no-sort',
     '--bind', toggle_symbols_bind,
-    '--bind', 'start:transform:[[ ! "$FZF_PROMPT" =~ "Outline" ]] && echo "change-header()+change-border-label()+clear-query+toggle-sort+unbind(ctrl-g)"',
+    '--bind', 'start:transform:[[ ! "$FZF_PROMPT" =~ "Outline" ]] && echo "change-header()+change-list-label()+clear-query+toggle-sort+unbind(ctrl-g)"',
   }
 end
 

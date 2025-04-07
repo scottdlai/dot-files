@@ -26,3 +26,8 @@ export PATH="$PATH:$JAVA_HOME/bin"
 export PYENV_ROOT="$XDG_STATE_HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init - zsh)"
+
+# functions
+for function in $ZDOTDIR/functions/*.zsh; do
+  source $function
+done

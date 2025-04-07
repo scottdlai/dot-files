@@ -52,3 +52,15 @@ setopt prompt_subst
 
 RPROMPT='$(mnml_wrap MNML_RPROMPT)'
 
+local function fzf-git() {
+    fzf --ansi --wrap --delimiter ' ' --accept-nth '1' \
+        --preview-window 'right,50%,<80(down,40%)' \
+        --bind 'ctrl-y:execute-silent(echo -n {1} | pbcopy)+abort' \
+        --bind 'ctrl-/:toggle-preview' $@
+}
+
+function _git-fzf-log() {
+    git log --color | fzf-git --header ':: CTRL-Y to yank commit hash' \
+        --preview 'git diff --color {1}^!' | xargs -I '{}' git checkout {}
+}
+

@@ -24,31 +24,31 @@ _gen_fzf_color_scheme() {
     local color0E='#d3869b'
     local color0F='#d65d0e'
 
+    local dim='#928374'
+
     echo "--color=bg+:$color01,bg:$color00,spinner:$color0C,hl:$color0D" \
-        "--color=fg:$color04,header:$color0D,info:$color0A,pointer:$color0D" \
-        "--color=marker:$color0C,fg+:$color06,prompt:$color0A,hl+:$color0D"
+        "--color=fg:$color04,header:$dim,info:$color0C,pointer:$color0D" \
+        "--color=marker:$color0C,fg+:$color06,prompt:$color09,hl+:$color0D"
 }
 
-export FZF_DEFAULT_OPTS="$(_gen_fzf_color_scheme) --style full:sharp --layout reverse --tmux center,80%"
+export FZF_DEFAULT_OPTS="$(_gen_fzf_color_scheme) --style full:sharp --layout reverse --tmux center,80% --preview-window 'right,50%,<80(down,40%)'"
 
 export FZF_ALT_C_OPTS="\
+    --walker-root $HOME/workspace $HOME/Documents $HOME/Desktop $HOME/Downloads $XDG_CONFIG_HOME \
     --walker-skip .git,node_modules,build,dist,target,Library \
-    --preview-window 'right,50%,<80(down,40%)' \
     --bind 'ctrl-/:toggle-preview'
-    --bind 'ctrl-h:transform:echo \"reload:</dev/tty fzf --filter '' --walker dir --walker-root $(realpath ../)\"'
     --preview 'ls -AF --color=always {}'"
 
 export FZF_CTRL_T_OPTS="\
     --walker-skip .git,node_modules,build,target,dist \
     --preview 'fzf-preview.sh {}' \
-    --preview-window 'right,50%,<80(down,40%)' \
     --bind 'ctrl-/:toggle-preview'"
 
 export FZF_CTRL_R_OPTS="\
     --wrap \
     --info inline \
     --bind 'ctrl-y:execute-silent(echo -n {2..} | pbcopy)+abort' \
-    --header ':: Press CTRL-Y to copy command into clipboard'"
+    --header ':: Press \x1b[93mCTRL-Y\x1b[0m to copy command into clipboard'"
 
 # Map Ctrl-p to launch fzf cd widget
 bindkey '^p' fzf-cd-widget
