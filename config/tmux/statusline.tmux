@@ -76,8 +76,7 @@ set -g status-left "\
 set -g status-right "\
 | [#{pane_index}/#{window_panes}] #{pane_width}x#{pane_height} \
 #[bg=$_tmux_color_bg_secondary, fg=$_tmux_color_text_secondary] #{user} \
-#[fg=$_tmux_color_bg_primary,bold]\
-#[bg=$_tmux_block_color] #{host_short} \
+#[bg=$_tmux_block_color,fg=$_tmux_color_bg_primary,bold] #{host_short} \
 "
 
 # window separators
