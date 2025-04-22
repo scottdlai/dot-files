@@ -20,7 +20,9 @@ export EDITOR=$VISUAL
 
 export CLICOLOR=1
 
-export LSCOLORS=exfxcxdxbxegedabagacad
+# use default colors
+export LSCOLORS=
+export LS_COLORS=
 
 export ZSH_COMPDUMP="$XDG_STATE_HOME/zsh/zcompdump"
 
@@ -43,6 +45,11 @@ _comp_options+=(globdots) # Include hidden files.
 
 # Git integration
 [ -f "$ZDOTDIR/git-integration.zsh" ] && source "$ZDOTDIR/git-integration.zsh"
+
+# functions
+for function in $ZDOTDIR/functions/*.zsh; do
+  source $function
+done
 
 # Other
 for file in $ZDOTDIR/other/*.zsh; do

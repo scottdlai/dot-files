@@ -1,4 +1,4 @@
-export NVM_DIR="$HOME/.local/share/nvm"
+export NVM_DIR="$XDG_DATA_HOME/nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 
 # place this after nvm initialization!
