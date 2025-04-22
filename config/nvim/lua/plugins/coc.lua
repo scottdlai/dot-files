@@ -26,8 +26,8 @@ keyset("i", "<TAB>", [[coc#pum#visible() ? coc#pum#next(1) : v:lua.check_back_sp
 keyset("i", "<S-TAB>", [[coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"]], opts)
 
 -- use C-j and C-k to move between and start options
-keyset("i", "<C-j>", [[coc#pum#visible() ? coc#pum#next(1) : coc#refresh()]], opts)
-keyset("i", "<C-k>", [[coc#pum#visible() ? coc#pum#prev(1) : coc#refresh()]], opts)
+keyset("i", "<C-j>", [[coc#pum#visible() ? coc#pum#next(1) : "\<C-n>"]], opts)
+keyset("i", "<C-k>", [[coc#pum#visible() ? coc#pum#prev(1) : "\<C-p>"]], opts)
 
 -- Make <CR> to accept selected completion item or notify coc.nvim to format
 -- <C-g>u breaks current undo, please make your own choice
@@ -41,17 +41,6 @@ keyset("i", "<c-space>", "coc#refresh()", { silent = true, expr = true })
 keyset("n", "[g", "<Plug>(coc-diagnostic-prev)", { silent = true })
 keyset("n", "]g", "<Plug>(coc-diagnostic-next)", { silent = true })
 
--- GoTo code navigation
-keyset("n", "gd", "<Plug>(coc-definition)", {silent = true})
-keyset("n", "gi", "<Plug>(coc-implementation)", {silent = true})
-keyset("n", "gr", "<Plug>(coc-references)", {silent = true})
-
--- Remove default lsp keymap after nvim 0.11
-vim.keymap.del('n', 'grn')
-vim.keymap.del('n', 'gra')
-vim.keymap.del('n', 'grr')
-vim.keymap.del('n', 'gri')
-vim.keymap.del('n', 'gO')
 
 -- Use Enter to show documentation in preview window
 local function show_docs()
@@ -74,10 +63,6 @@ vim.api.nvim_create_autocmd("CursorHold", {
     command = "silent call CocActionAsync('highlight')",
     desc = "Highlight symbol under cursor on CursorHold"
 })
-
--- Symbol renaming
-keyset("n", "<leader>rn", "<Plug>(coc-rename)", {silent = true})
-keyset("n", "<F2>", "<Plug>(coc-rename)", {silent = true})
 
 -- Setup formatexpr specified filetype(s)
 vim.api.nvim_create_autocmd("FileType", {
@@ -105,7 +90,7 @@ keyset("n", "<leader>ac", "<Plug>(coc-codeaction-cursor)", opts)
 -- Remap keys for apply source code actions for current file.
 keyset("n", "<leader>as", "<Plug>(coc-codeaction-source)", opts)
 -- Apply the most preferred quickfix action on the current line.
-keyset("n", "<leader>qf", "<Plug>(coc-fix-current)", opts)
+keyset("n", "<leader>.", "<Plug>(coc-fix-current)", opts)
 
 -- Remap keys for apply refactor code actions.
 keyset("n", "<leader>rf", "<Plug>(coc-codeaction-refactor)", { silent = true })
@@ -126,3 +111,40 @@ vim.api.nvim_create_user_command("OR", "call CocActionAsync('runCommand', 'edito
 
 -- Prettier
 vim.api.nvim_create_user_command('Prettier', 'call CocAction("runCommand", "prettier.forceFormatDocument")', {})
+
+-- Remove default lsp keymap after nvim 0.11
+vim.keymap.del('n', 'grr')
+vim.keymap.del('n', 'gri')
+vim.keymap.del('n', 'grn')
+vim.keymap.del('n', 'gra')
+vim.keymap.del('n', 'gO')
+
+-- LSP specific setup
+vim.api.nvim_create_autocmd('FileType', {
+    pattern = {
+      'python',
+      'typescript',
+      'javascript',
+      'typescriptreact',
+      'javascriptreact',
+      'json',
+      'jsonc',
+      'html',
+      'css',
+    },
+    desc = 'setup keybinds for files with lsp setup',
+    group = vim.api.nvim_create_augroup('COC setup', {}),
+    callback = function()
+      local opts = { silent = true, noremap = true, buffer = true }
+      keyset('n', '<C-k>', ':CocFzfList outline<CR>', opts)
+
+      -- Symbol renaming
+      keyset("n", "<leader>rn", "<Plug>(coc-rename)", opts)
+      keyset("n", "<F2>", "<Plug>(coc-rename)", opts)
+
+      -- GoTo code navigation
+      keyset("n", "gd", "<Plug>(coc-definition)", {silent = true})
+      keyset("n", "gi", "<Plug>(coc-implementation)", {silent = true})
+      keyset("n", "gr", "<Plug>(coc-references)", {silent = true})
+    end,
+})

@@ -44,7 +44,7 @@ opt.shiftwidth = 4
 opt.softtabstop = 4
 opt.expandtab = true
 opt.shiftround = false
-opt.listchars = { tab = '| ', lead = '·', trail = '~' }
+opt.listchars = { tab = '| ', lead = '·', trail = '~', }
 opt.list = true
 
 opt.foldmethod = 'expr'
@@ -66,3 +66,5 @@ opt.jumpoptions = 'stack'
 
 -- increment alphabets
 opt.nrformats:append('alpha')
+
+opt.confirm = true

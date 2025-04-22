@@ -24,7 +24,7 @@ Plug('airblade/vim-gitgutter')
 Plug('junegunn/goyo.vim')
 Plug('echasnovski/mini.surround')
 -- quit buffer without removing splits
-Plug('moll/vim-bbye')
+Plug('scottdlai/vim-bbye')
 Plug('christoomey/vim-tmux-navigator')
 
 -- themes
@@ -37,6 +37,7 @@ vim.call('plug#end')
 
 -- set leader key before loading plugins
 vim.g.mapleader = ' '
+vim.g.localleader = '<Bslash>'
 
 -- plugins
 require('plugins')

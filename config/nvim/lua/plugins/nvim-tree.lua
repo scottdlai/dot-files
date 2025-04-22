@@ -11,6 +11,7 @@ function delete_default_keymaps(bufnr)
   vim.keymap.del('n', '<C-t>', delete_keymap_opt)
   vim.keymap.del('n', '<C-v>', delete_keymap_opt)
   vim.keymap.del('n', '<C-x>', delete_keymap_opt)
+  vim.keymap.del('n', '<C-k>', delete_keymap_opt)
 
   vim.keymap.del('n', '[c', delete_keymap_opt)
   vim.keymap.del('n', ']c', delete_keymap_opt)
@@ -41,7 +42,11 @@ end
 
 require('nvim-tree').setup {
   view = {
-    width = 35,
+    width = {
+      min = '25%',
+      max = 40,
+      padding = 2,
+    },
   },
 
   git = {
@@ -66,14 +71,6 @@ require('nvim-tree').setup {
       '.env',
     },
     icons = {
-      web_devicons = {
-        folder = {
-          enable = false,
-        },
-        file = {
-          enable = false,
-        },
-      },
       show = {
         file = false,
         folder = false,
@@ -99,7 +96,8 @@ require('nvim-tree').setup {
           symlink_open = '~+',
         },
       },
-    }
+    },
+    add_trailing = false,
   },
 
   actions = {
@@ -157,9 +155,11 @@ require('nvim-tree').setup {
     -- close the tree if focus
     vim.keymap.set('n', '<leader>T', api.tree.close, opts('Close'))
 
+    vim.keymap.set('n', 'K', api.node.show_info_popup, opts('Info'))
+
     delete_default_keymaps(bufnr)
 
     -- Makes special files yellow
-    vim.cmd('highlight! link NvimTreeSpecialFile Yellow')
+    vim.cmd('highlight! link NvimTreeSpecialFile YellowBold')
   end,
 }

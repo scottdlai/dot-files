@@ -58,5 +58,9 @@ require('nvim-treesitter.configs').setup({
         ['[S'] = { query = '@block.outer', desc = 'Previous scope end' },
       },
     },
+
+    indent = {
+      enable = true,
+    },
   },
 })

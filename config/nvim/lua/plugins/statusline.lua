@@ -15,7 +15,10 @@ vim.g['airline#extensions#tabline#enabled'] = 1
 vim.g['airline#extensions#tabline#formatter'] = 'short_path_improved'
 
 vim.g['airline#extensions#hunks#enabled'] = 0
-vim.g['airline#extensions#fzf#enabled'] = 1
 
--- Simplify the z section to show only maxline:maxcolumn ┃ line:column
-vim.g['airline_section_z'] = '%L:%{col("$")-1} ┃ %#__accent_bold#%l:%v%#__restore__#'
+-- show filetype | encoding | fileformat
+vim.g.airline_section_x = "%{&fileformat} | %{&encoding} | " .. "%{len(&filetype) > 0 ? &filetype : 'no ft'}"
+-- show maxline|maxcolumn
+vim.g.airline_section_y = '%L|%{col("$")-1}'
+-- just show line:column
+vim.g.airline_section_z = ' %#__accent_bold#%l:%v%#__restore__# '

@@ -1,11 +1,13 @@
 local keymap = vim.keymap
 
 --- Remap Keys ---
--- Insert mode
 -- Use backtick as prefix key for tmux
-keymap.set('i', '<C-b>', '`', { noremap = true })
-keymap.set('o', 'i<C-b>', 'i`', { noremap = true })
-keymap.set('o', 'a<C-b>', 'a`', { noremap = true })
+keymap.set({ 'i' }, '<C-b>', '`', { noremap = true })
+
+-- Command mode
+keymap.set('c', '<C-a>', '<C-b>', { noremap = true })
+keymap.set('c', '<C-j>', '<Down>', { noremap = true })
+keymap.set('c', '<C-k>', '<Up>', { noremap = true })
 
 -- Normal, Visual, and Operator-Pending modes
 -- Clipboard copy paste
@@ -13,17 +15,13 @@ keymap.set({ 'n', 'v', 'o' }, 'gy', '"+y', { noremap = true })
 keymap.set({ 'n', 'v', 'o' }, 'gp', '"+p', { noremap = true })
 keymap.set({ 'n', 'v', 'o' }, 'gP', '"+P', { noremap = true })
 
-keymap.set({ 'n', 'v', 'o' }, 'gb', '^', { noremap = true })
-keymap.set({ 'n', 'v', 'o' }, 'ge', '$', { noremap = true })
-
 local charsearch_opts = { silent = true, noremap = true, expr = true }
 keymap.set({ 'n', 'v', 'o' }, ';', [[getcharsearch().forward ? ';' : ',']], charsearch_opts)
 keymap.set({ 'n', 'v', 'o' }, ',', [[getcharsearch().forward ? ',' : ';']], charsearch_opts)
 
--- keymap.set({ 'n', 'v', 'o' }, '<CR>', ':', { noremap = true })
-
 -- Normal mode
 keymap.set('n', '<F1>', ':Helptags<CR>', { noremap = true, silent = true })
+keymap.set('n', '<Leader>1', ':Helptags<CR>', { noremap = true, silent = true })
 
 -- tab is ctrl-i, map shift tab to ctrl-o
 keymap.set('n', '<S-Tab>', '<C-o>', { noremap = true, silent = true })
@@ -61,12 +59,11 @@ keymap.set('v', '<C-s>', [["0y:%s/<C-r>0/<C-r>0/gci<Left><Left><Left><Left>]])
 
 -- fzf mappings
 keymap.set('n', '<C-p>', ':Files<CR>', { silent = true })
-keymap.set('n', '<C-k>', ':CocFzfList outline<CR>', { silent = true })
-keymap.set('n', '<C-f>', ':Rg<CR>', { silent = true })
-keymap.set('v', '<C-f>', '"0y:Rg <C-r>0<CR>', { silent = true })
+keymap.set('n', '<C-f>', ':BLines<CR>', { silent = true })
+keymap.set('v', '<C-f>', '"0y:BLines <C-r>0<CR>', { silent = true })
 
-keymap.set('n', '<C-\\>', ':Windows<CR>', { silent = true })
-keymap.set('n', '<leader>B', ':Buffers<CR>', { silent = true })
+keymap.set('n', '<Leader>F', ':Rg<CR>', { silent = true })
+keymap.set('v', '<Leader>F', '"0y:Rg <C-r>0<CR>', { silent = true })
 
 -- Integration with Tmux navigation
 keymap.set('n', '<C-w>h', ':TmuxNavigateLeft<CR>', { silent = true })
@@ -74,29 +71,15 @@ keymap.set('n', '<C-w>j', ':TmuxNavigateDown<CR>', { silent = true })
 keymap.set('n', '<C-w>k', ':TmuxNavigateUp<CR>', { silent = true })
 keymap.set('n', '<C-w>l', ':TmuxNavigateRight<CR>', { silent = true })
 
+keymap.set('n', '<Leader><Leader>', ':Buffers<CR>', { silent = true, noremap = true })
+keymap.set('n', '<Leader>T', ':NvimTreeFindFile<CR>', { silent = true, noremap = true })
+keymap.set('n', '<Leader>Z', ':Goyo<CR>', { silent = true, noremap = true })
+keymap.set('n', '<Leader>bw', ':Bwipeout<CR>', { silent = true, noremap = true })
+keymap.set('n', '<Leader>Q', ':bufdo bwipeout<CR>', { silent = true, noremap = true })
+
+-- Git stuffs
+keymap.set('n', '<Leader>G', ':tab Git<CR>', { silent = true, noremap = true })
+keymap.set('n', '<Leader>gb', ':Git blame<CR>', { silent = true, noremap = true })
+
 -- Visual mode
 keymap.set('v', 'q', '<Esc>', { noremap = true })
-
--- from the primeagen: move selected text up and down
-keymap.set('v', 'J', ":m '>+1<CR>gv=gv", { noremap = true, silent = true })
-keymap.set('v', 'K', ":m '<-2<CR>gv=gv", { noremap = true, silent = true })
-
--- leader keybinds
-keymap.set('n', '<leader>?', ':Maps<CR>', { silent = true })
-
-keymap.set('n', '<leader>d<Space>', 'mz:%s/\\s\\+$//g<CR>:noh<CR>`z:delm z<CR>', { silent = true, desc = 'Clear trailing whitespace' })
-
-keymap.set('n', '<leader>T', ':NvimTreeFindFile<CR>', { silent = true })
-
-keymap.set('n', '<leader>Z', ':Goyo<CR>', { silent = true })
-
-keymap.set('n', '<leader>bd', ':Bdelete<CR>', { silent = true })
-keymap.set('n', '<leader>bw', ':Bwipeout<CR>', { silent = true })
-keymap.set('n', '<leader>Q', ':bufdo :bwipeout<CR>:clearjumps<CR>', { silent = true })
-
-keymap.set('n', '<leader>G', ':tab G<CR>', { silent = true })
-keymap.set({ 'n', 'v', 'o' }, '<leader>gs', ':GitGutterStageHunk<CR>', { silent = true })
-keymap.set({ 'n', 'v', 'o' }, '<leader>gu', ':GitGutterUndoHunk<CR>', { silent = true })
-
-keymap.set('n', '<leader>gL', ':diffget LOCAL<CR>', { silent = true })
-keymap.set('n', '<leader>gR', ':diffget REMOTE<CR>', { silent = true })
