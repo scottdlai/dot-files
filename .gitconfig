@@ -44,11 +44,13 @@
 
 	unfuck = reset --hard HEAD
 
-	review = "!f() { local branch_name=${1:-origin/HEAD}; nvim -p $(git diff --name-only $(git merge-base HEAD $branch_name)) -c \"tabdo Gvdiffsplit $branch_name | wincmd h\" -c \"call feedkeys('1gt')\"; }; f"
+	review = "!f() { local dest_branch=${1:-origin/HEAD}; nvim -p $(git diff --name-only $(git merge-base HEAD $dest_branch)) -c \"tabdo Gvdiffsplit $dest_branch | wincmd r | wincmd l\" -c \"call feedkeys('1gt')\"; }; f"
 
-	logf = "!zsh -c _git_logf"
+	# pass dummy arg foo to pass rest of argument to function
+	# https://stackoverflow.com/questions/46435606/how-to-use-a-bash-function-in-a-git-alias#comment79829519_46435837
+	logf = "!zsh -ic \"_git_logf $@\" dummy"
 
-	reflogf = "!zsh -c _git_reflogf"
+	reflogf = "!zsh -ic \"_git_reflogf $@\" dummy"
 
 [mergetool "nvimdiff"]
 	cmd = nvim -d -c 'wincmd l' "$LOCAL" "$MERGED" "$REMOTE"
