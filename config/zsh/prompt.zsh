@@ -5,32 +5,37 @@
 
 # Components
 function mnml_git {
-    local normal='%{\e[1;33m%}'
-    local ahead='%{\e[1;32m%}'
-    local behind='%{\e[1;31m%}'
-    local warning='%{\e[1;33m%}'
+    local normal='%F{white}%B'
+    local ahead='%F{green}%B'
+    local behind='%F{red}%B'
+    local warning='%F{yellow}%B'
 
-    local statcolor="$normal" # assume clean
     local bname="$(git rev-parse --abbrev-ref HEAD 2> /dev/null)"
+    # assume clean
+    local statcolor="$normal"
     local extra='*'
 
     if [ -n "$bname" ]; then
         local rs="$(git status --porcelain -b)"
-        if $(echo "$rs" | grep -v '^##' &> /dev/null); then # is dirty
+        if $(echo "$rs" | grep -v '^##' &> /dev/null); then
+            # is dirty
             statcolor="$warning"
             extra='~'
-        elif $(echo "$rs" | grep '^## .*diverged' &> /dev/null); then # has diverged
+        elif $(echo "$rs" | grep '^## .*diverged' &> /dev/null); then
+            # has diverged
             statcolor="$warning"
             extra='^'
-        elif $(echo "$rs" | grep '^## .*behind' &> /dev/null); then # is behind
+        elif $(echo "$rs" | grep '^## .*behind' &> /dev/null); then
+            # is behind
             statcolor="$behind"
             extra='-'
-        elif $(echo "$rs" | grep '^## .*ahead' &> /dev/null); then # is ahead
+        elif $(echo "$rs" | grep '^## .*ahead' &> /dev/null); then
+            # is ahead
             statcolor="$ahead"
             extra='+'
         fi
 
-        echo -n "%bon $statcolor$bname$extra"
+        echo -n "on $statcolor$bname$extra"
     fi
 }
 
@@ -54,5 +59,5 @@ setopt prompt_subst
 
 # Prompt
 export PROMPT='
-%B%{$fg[cyan]%}%n %bin %B%{$fg[blue]%}%~ %bat %B$fg[magenta]%D{%f/%m} %* $(mnml_wrap EXTRA_PROMPT)
-%B$fg[cyan]❯ %b'
+%B%F{cyan}%n%f%b in %B%F{blue}%~%f%b at %B%F{magenta}%D{%f/%m} %*%f%b $(mnml_wrap EXTRA_PROMPT)
+%B%F{cyan}❯ %b'

@@ -43,9 +43,6 @@ _comp_options+=(globdots) # Include hidden files.
 # aliases
 [ -f "$ZDOTDIR/alias.zsh" ] && source "$ZDOTDIR/alias.zsh"
 
-# Git integration
-[ -f "$ZDOTDIR/git-integration.zsh" ] && source "$ZDOTDIR/git-integration.zsh"
-
 # functions
 for function in $ZDOTDIR/functions/*.zsh; do
   source $function
