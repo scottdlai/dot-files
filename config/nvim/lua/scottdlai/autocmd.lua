@@ -22,18 +22,9 @@ vim.api.nvim_create_autocmd('FileType', {
   desc = 'Files that use 2 spaces for indenting',
   group = vim.api.nvim_create_augroup('Files that use 2 spaces for indenting', {}),
   callback = function()
-    vim.cmd('setlocal tabstop=2')
-    vim.cmd('setlocal shiftwidth=2')
-
-    vim.b.coc_root_patterns = {
-      '.git',
-      '.env',
-      'tailwind.config.js',
-      'tailwind.config.ts',
-      'tailwind.config.mjs',
-      'tailwind.config.cjs',
-      'package.json',
-    }
+    vim.bo.tabstop = 2
+    vim.bo.softtabstop = 2
+    vim.bo.shiftwidth = 2
   end,
 })
 
@@ -47,20 +38,35 @@ vim.api.nvim_create_autocmd('FileType', {
 })
 
 vim.api.nvim_create_autocmd('FileType', {
-  pattern = { 'help', 'fugitive', },
+  pattern = { 'help', 'fugitive', 'fugitiveblame', },
   desc = 'Remap q to exit',
+  group = vim.api.nvim_create_augroup('q to exit', {}),
   callback = function()
     vim.keymap.set('n', 'q', ':q<CR>', { noremap = true, silent = true, buffer = true })
   end,
 })
 
-vim.api.nvim_create_autocmd("BufEnter", {
-    pattern = "*",
-    desc = 'Remap q to exit in diff mode',
-    group = vim.api.nvim_create_augroup('diff mode mappings', {}),
-    callback = function()
-        if vim.opt.diff:get() then
-            vim.keymap.set("n", "q", ":qa<CR>", { noremap = true, silent = true, buffer = true })
-        end
-    end,
+vim.api.nvim_create_autocmd('BufEnter', {
+  pattern = '*',
+  desc = 'keybinds in diff mode',
+  group = vim.api.nvim_create_augroup('diff mode mappings', {}),
+  callback = function()
+    if vim.opt.diff:get() then
+      local opts = { noremap = true, silent = true, buffer = true }
+      vim.keymap.set('n', '<LocalLeader>l', ':diffget LOCAL<CR>', opts)
+      vim.keymap.set('n', '<LocalLeader>r', ':diffget REMOTE<CR>', opts)
+      vim.keymap.set('n', '<LocalLeader>t', ':Windows<CR>', opts)
+      vim.keymap.set('n', '<LocalLeader>q', ':tabclose<CR>', opts)
+      vim.keymap.set('n', '<LocalLeader>Q', ':qa<CR>', opts)
+    end
+  end,
+})
+
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+  pattern = "*.tmux",
+  desc = 'treat .tmux files as tmux files',
+  group = vim.api.nvim_create_augroup('set filetype tmux', {}),
+  callback = function()
+    vim.bo.filetype = "tmux"
+  end,
 })
