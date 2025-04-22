@@ -98,7 +98,7 @@ $_tmux_color_primary_mode,\
 }},bold\
 "
 
-set -wg window-status-format "[#{window_index}] #{window_name}"
+set -wg window-status-format "#{window_index} #{window_name}"
 set -wg window-status-current-format "#{E:window-status-format}#F"
 
 set -g status-left-length 200
