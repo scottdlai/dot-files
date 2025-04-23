@@ -1,7 +1,7 @@
 # Git autocomplete
 # source: https://github.com/rotsix/dotfiles/blob/master/zsh/.zsh.d/prompt.zsh
 
-[ -z "$EXTRA_PROMPT" ] && EXTRA_PROMPT=(mnml_git)
+[ -z "$EXTRA_PROMPT" ] && EXTRA_PROMPT=(mnml_git mnml_status_code)
 
 # Components
 function mnml_git {
@@ -35,8 +35,12 @@ function mnml_git {
             extra='+'
         fi
 
-        echo -n "on ${statcolor}λ ${bname}${extra}"
+        echo -n "on ${statcolor}λ ${bname}${extra}%f%b"
     fi
+}
+
+function mnml_status_code {
+    echo -n "%(?.%F{green}%B✓%b%f.exits %F{red}%B%?%b%f)"
 }
 
 # Wrappers & utils
