@@ -7,6 +7,8 @@ autoload -U colors && colors
 # History
 export HISTFILE="$XDG_STATE_HOME/zsh/zsh_history"
 export HISTDUP="erase"
+export HISTSIZE=5000
+export SAVEHIST=5000
 setopt appendhistory
 setopt sharehistory
 setopt hist_ignore_space
@@ -36,9 +38,6 @@ _comp_options+=(globdots) # Include hidden files.
 
 # Vi mode for zsh
 [ -f "$ZDOTDIR/vim.zsh" ] && source "$ZDOTDIR/vim.zsh"
-
-# fzf
-[ -f "$ZDOTDIR/fzf-config.zsh" ] && source "$ZDOTDIR/fzf-config.zsh"
 
 # aliases
 [ -f "$ZDOTDIR/alias.zsh" ] && source "$ZDOTDIR/alias.zsh"

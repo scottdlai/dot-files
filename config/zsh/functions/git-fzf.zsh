@@ -1,4 +1,4 @@
-function _git_logf() {
+function _git_logf {
     git log --color $@ | \
     fzf --ansi --wrap +s -0 \
         --prompt 'Commits> ' \
@@ -10,7 +10,7 @@ function _git_logf() {
         --bind 'ctrl-y:execute-silent(echo -n {1} | pbcopy)+abort';
 };
 
-function _git_reflogf() {
+function _git_reflogf {
     git reflog --color \
         --format='%C(yellow bold)%h %C(reset)%C(cyan bold)%gD %C(auto)%d %C(reset)%gs %Cgreen(%cr)' $@ | \
     fzf --ansi --wrap +s -0 \

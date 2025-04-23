@@ -35,12 +35,12 @@ function mnml_git {
             extra='+'
         fi
 
-        echo -n "on ${statcolor}λ ${bname}${extra}%f%b"
+        echo -n "on ${statcolor}λ ${bname}${extra}%b%f"
     fi
 }
 
 function mnml_status_code {
-    echo -n "%(?.%F{green}%B✓%b%f.exits %F{red}%B%?%b%f)"
+    echo -n "%(?..%F{red}%B[%?]%b%f)"
 }
 
 # Wrappers & utils
@@ -63,5 +63,5 @@ setopt prompt_subst
 
 # Prompt
 export PROMPT='
-%B%F{cyan}%n@%m%f%b in %B%F{blue}%~%f%b at %B%F{magenta}%D{%f/%m} %*%f%b $(mnml_wrap EXTRA_PROMPT)
-%B%F{cyan}%#❯ %f%b'
+%B%F{cyan}%n@%m%f%b in %B%F{blue}%2~%f%b at %B%F{magenta}%D{%f/%m} %*%f%b $(mnml_wrap EXTRA_PROMPT)
+%B%F{cyan}%(!.#.❯) %f%b'
