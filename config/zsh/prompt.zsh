@@ -5,7 +5,7 @@
 
 # Components
 function mnml_git {
-    local normal='%F{white}%B'
+    local normal='%F{blue}%B'
     local ahead='%F{green}%B'
     local behind='%F{red}%B'
     local warning='%F{yellow}%B'
@@ -13,7 +13,7 @@ function mnml_git {
     local bname="$(git rev-parse --abbrev-ref HEAD 2> /dev/null)"
     # assume clean
     local statcolor="$normal"
-    local extra='*'
+    local extra=''
 
     if [ -n "$bname" ]; then
         local rs="$(git status --porcelain -b)"
@@ -35,7 +35,7 @@ function mnml_git {
             extra='+'
         fi
 
-        echo -n "on $statcolor$bname$extra"
+        echo -n "on ${statcolor}λ ${bname}${extra}"
     fi
 }
 
@@ -59,5 +59,5 @@ setopt prompt_subst
 
 # Prompt
 export PROMPT='
-%B%F{cyan}%n%f%b in %B%F{blue}%~%f%b at %B%F{magenta}%D{%f/%m} %*%f%b $(mnml_wrap EXTRA_PROMPT)
-%B%F{cyan}❯ %b'
+%B%F{cyan}%n@%m%f%b in %B%F{blue}%~%f%b at %B%F{magenta}%D{%f/%m} %*%f%b $(mnml_wrap EXTRA_PROMPT)
+%B%F{cyan}%#❯ %f%b'
