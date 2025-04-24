@@ -5,7 +5,7 @@ local function my_rg(opts)
   local fzf_shellescape = vim.fn['fzf#shellescape']
 
   local args = opts.args
-  local header = ':: \x1b[93mCTRL-F\x1b[0m to toggle File, \x1b[93mCTRL-G\x1b[0m to live grep'
+  local header = ':: \x1b[93mCTRL-F\x1b[0m to toggle File, \x1b[93mCTRL-G\x1b[0m to toggle live grep'
 
   local include_file_name_label = " File name + Text "
   local exclude_file_name_label = " Text "
@@ -16,31 +16,42 @@ local function my_rg(opts)
   local nth = "4.."
   local label = exclude_file_name_label
 
+  local prompt = 'RG> '
+  local enabled_flag = '--disabled'
+  local start_binding = 'start:rebind(change)'
+
   -- search file name and all files if query is provided
   if opts.args ~= '' then
     nth = "1.."
     label = include_file_name_label
+    prompt = 'FZF> '
+    enabled_flag = '--enabled'
+    start_binding = 'start:unbind(change)'
   end
 
-  local ctrl_f_bind = string.format('ctrl-f:transform-nth([[ $FZF_NTH = "4.." ]] && echo "1.." || echo "4..")+transform-list-label([[ $FZF_NTH = "4.." ]] && echo "%s" || echo "%s")', exclude_file_name_label, include_file_name_label)
+  local include_file_name_actions = string.format('change-nth(1..)+change-list-label(%s)', include_file_name_label)
+  local exclude_file_name_actions = string.format('change-nth(4..)+change-list-label(%s)', exclude_file_name_label)
+  local ctrl_f_bind = string.format([=[ctrl-f:transform:[[ $FZF_NTH = "4.." ]] && echo '%s' || echo '%s']=], include_file_name_actions, exclude_file_name_actions)
 
   local live_grep_bind = string.format('change:reload(%s {q} 2>&1 || true)', rg)
 
-  local ctrl_g_bind = string.format([=[ctrl-g:transform:[[ "$FZF_PROMPT" =~ "RG" ]] && echo 'unbind(change)+change-prompt(FZF> )+enable-search+clear-query' || echo 'rebind(change)+change-prompt(RG> )+reload(%s {q} 2>&1 || true)+disable-search']=], rg)
+  local fzf_mode_actions = string.format('unbind(change)+change-prompt(FZF> )+enable-search+clear-query+change-nth(1..)+change-list-label(%s)', include_file_name_label)
+  local live_grep_actions = string.format('rebind(change)+change-prompt(RG> )+reload(%s {q} 2>&1 || true)+disable-search', rg)
+  local ctrl_g_bind = string.format([=[ctrl-g:transform:[[ "$FZF_PROMPT" =~ "RG" ]] && echo '%s' || echo '%s']=], fzf_mode_actions, live_grep_actions)
 
   local options = {
-    '--prompt', 'FZF> ',
+    enabled_flag,
+    '--prompt', prompt,
     '--header', header,
     '--delimiter', delimiter,
     '--nth', nth,
-    '--wrap',
     '--list-label', label,
     '--bind', ctrl_f_bind,
-    '--bind', 'start:unbind(change)',
+    '--bind', start_binding,
     '--bind', "focus:transform-preview-label:echo ' {1} '",
     '--bind', live_grep_bind,
     '--bind', ctrl_g_bind,
-    '--bind', 'alt-a:toggle-all',
+    '--bind', 'alt-/:toggle-wrap',
   }
 
   local fzf_opts = fzf_vim_with_preview({options = options})
@@ -48,7 +59,7 @@ local function my_rg(opts)
   -- add || true if no instance is found
   local command = rg .. fzf_shellescape(args) .. ' || true'
 
-  fzf_vim_grep(command, fzf_opts, opts.bang)
+  return fzf_vim_grep(command, fzf_opts, opts.bang)
 end
 
 local function get_files_options()
@@ -61,8 +72,11 @@ local function get_files_options()
   local rg_enable_git_command = "fd --follow --type file --hidden --exclude '.git' --exclude 'node_modules'"
   local rg_disable_git_command = "fd --follow --type file --hidden --no-ignore --exclude '.git' --exclude 'node_modules'"
 
+  local git_mode_actions = string.format('reload(%s)+change-list-label(%s)', rg_enable_git_command, enable_git_label)
+  local all_files_actions = string.format('reload(%s)+change-list-label(%s)', rg_disable_git_command, disable_git_label)
+
   -- https://github.com/junegunn/fzf/blob/master/ADVANCED.md#toggling-with-a-single-key-binding
-  local ctrl_g_bind = string.format('ctrl-g:transform:[[ $FZF_LIST_LABEL =~ "All" ]] && echo "reload(%s)+change-list-label(%s)" || echo "reload(%s)+change-list-label(%s)"', rg_enable_git_command, enable_git_label, rg_disable_git_command, disable_git_label)
+  local ctrl_g_bind = string.format('ctrl-g:transform:[[ $FZF_LIST_LABEL =~ "All" ]] && echo "%s" || echo "%s"', git_mode_actions, all_files_actions)
 
   local start_bind = string.format('start:reload(%s)', rg_enable_git_command)
 
