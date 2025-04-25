@@ -29,11 +29,10 @@ export LS_COLORS=
 export ZSH_COMPDUMP="$XDG_STATE_HOME/zsh/zcompdump"
 
 # Basic auto/tab complete:
-export FPATH="$FPATH:$XDG_DATA_HOME/completions"
 autoload -Uz compinit
 zstyle ':completion:*' menu select
 zmodload zsh/complist
-compinit -d $ZSH_COMPDUMP
+compinit -d "$ZSH_COMPDUMP"
 _comp_options+=(globdots) # Include hidden files.
 
 # Vi mode for zsh
