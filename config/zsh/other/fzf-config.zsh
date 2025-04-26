@@ -9,8 +9,7 @@ export FZF_DEFAULT_OPTS="$(_gen_fzf_color_scheme) --style full:sharp \
     --layout reverse \
     --height 80% \
     --tmux center,60%,80% \
-    --preview-label ' Preview ' \
-    --border none"
+    --preview-label ' Preview '"
 
 export FZF_ALT_C_OPTS="\
     --walker-root $HOME/workspace $HOME/Documents $HOME/Desktop $HOME/Downloads $XDG_CONFIG_HOME \
