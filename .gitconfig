@@ -52,6 +52,8 @@
 
 	reflogf = "!zsh -ic \"_git_reflogf $@\" dummy"
 
+	stashf = "!zsh -ic \"_git_stash_list_fzf\""
+
 [mergetool "nvimdiff"]
 	cmd = nvim -d -c 'wincmd l' "$LOCAL" "$MERGED" "$REMOTE"
 

@@ -6,6 +6,7 @@ function _git_logf {
         --delimiter ' ' \
         --accept-nth 1 \
         --preview 'git diff --color {1}^!' \
+        --preview-window 'right,50%,<60(down,45%)' \
         --bind 'ctrl-/:toggle-preview' \
         --bind 'ctrl-y:execute-silent(echo -n {1} | pbcopy)+abort';
 };
@@ -20,3 +21,13 @@ function _git_reflogf {
         --accept-nth 2 \
         --bind 'ctrl-y:execute-silent(echo -n {2} | pbcopy)+abort';
 };
+
+function _git_stash_list_fzf {
+    git stash list --pretty="%C(yellow bold)%gd: %C(reset)%gs %C(green)(%cr)" --color=always | \
+        fzf --ansi --input-border none \
+            --delimiter ':' \
+            --accept-nth '1' \
+            --preview 'git stash show --include-untracked -p --color=always {1}' \
+            --preview-window 'right,50%,<60(down,45%)' \
+            --bind 'ctrl-y:execute-silent(echo -n {1} | pbcopy)+abort'
+}
