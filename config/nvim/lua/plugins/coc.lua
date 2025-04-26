@@ -131,6 +131,7 @@ vim.api.nvim_create_autocmd('FileType', {
       'jsonc',
       'html',
       'css',
+      'go',
     },
     desc = 'setup keybinds for files with lsp setup',
     group = vim.api.nvim_create_augroup('COC setup', {}),
