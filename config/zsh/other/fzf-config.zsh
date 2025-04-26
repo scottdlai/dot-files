@@ -1,23 +1,16 @@
 # Set up fzf key bindings and fuzzy completion
 source <(fzf --zsh)
 
-# Scheme name: Gruvbox dark, medium
-# Scheme system: base16
-# Scheme author: Dawid Kurek (dawikur@gmail.com), morhetz (https://github.com/morhetz/gruvbox)
-# Template author: Tinted Theming (https://github.com/tinted-theming)
-
 _gen_fzf_color_scheme() {
-    echo "--color=bg+:#32302f,border:#928374,spinner:#fabd2f,hl:#b8bb26" \
-        "--color=fg:#ebdbb2,header:#928374,info:#8ec07c,pointer:#83a598" \
-        "--color=marker:#fabd2f,fg+:#ebdbb2,prompt:#fe8019,hl+:#8ec07c" \
-        "--color=label:#bdae93"
+    echo -n "--color=bg+:#32302f,border:#928374,spinner:#d8a657,hl:#a9b665,fg:#d4be98,header:#928374,info:#89b482,pointer:#7daea3,marker:#d8a657,fg+:#d4be98,prompt:#e78a4e,hl+:#89b482,label:white"
 }
 
 export FZF_DEFAULT_OPTS="$(_gen_fzf_color_scheme) --style full:sharp \
     --layout reverse \
     --height 80% \
     --tmux center,60%,80% \
-    --preview-label ' Preview '"
+    --preview-label ' Preview ' \
+    --border none"
 
 export FZF_ALT_C_OPTS="\
     --walker-root $HOME/workspace $HOME/Documents $HOME/Desktop $HOME/Downloads $XDG_CONFIG_HOME \

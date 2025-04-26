@@ -16,12 +16,13 @@ opt.cmdheight = 2
 -- themes
 opt.termguicolors = true
 opt.background = 'dark'
-g.gruvbox_material_foreground = 'original'
-g.gruvbox_material_statusline_style = 'original'
-g.gruvbox_material_background = 'medium'
+g.gruvbox_material_foreground = 'material'
+g.gruvbox_material_statusline_style = 'material'
+g.gruvbox_material_background = 'soft'
 g.gruvbox_material_ui_contrast = 'high'
 g.gruvbox_material_visual = 'reverse'
 g.gruvbox_material_transparent_background = 1
+g.gruvbox_material_float_style = 'dim'
 vim.cmd('silent! colorscheme gruvbox-material')
 -- Status line should show the mode anyways
 opt.showmode = false
