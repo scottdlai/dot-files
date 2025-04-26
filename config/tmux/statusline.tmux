@@ -23,7 +23,7 @@ $_tmux_color_primary_mode,\
 ### status bar ###
 
 # set statusbar update interval
-set -g status-interval 1
+set -g status-interval 15
 
 # Add a blank space between the status line and the windows
 set -g status 2
@@ -70,7 +70,7 @@ set -g status-left "\
 #[bg=$_tmux_color_misc fg=$_tmux_color_bg_primary,bold]#{?rectangle_toggle, R ,}\
 #[fg=$_tmux_color_bg_primary,bold bg=$_tmux_block_color] #{session_name} \
 #[bg=$_tmux_color_bg_secondary fg=$_tmux_color_text_secondary,nobold]#(pmset -g batt | grep -oE '\\d{1,3}%%' | xargs -I {} echo ' {} ')\
-#[bg=default fg=default] %a %b %d %H:%M:%S %Z | \
+#[bg=default fg=default] %a %b %d %H:%M %Z | \
 "
 
 set -g status-right "\
