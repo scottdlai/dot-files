@@ -112,21 +112,8 @@ vim.g.fzf_vim = {
 
 -- COC FZF
 local function get_coc_fzf_opts()
-  local query_top = 'echo \'change-query(!^| )+change-list-label( Top )\''
-  local query_functions = 'echo "change-query([Function] | [Method] | [Constructor] )+change-list-label( Function )"'
-  local query_classes = 'echo "change-query([Class] | [Interface] | [Property] )+change-list-label( Class )"'
-  local query_all = 'echo "clear-query+change-list-label( All )"'
-
-  local toggle_symbols_bind = string.format([=[ctrl-g:transform:if [[ "$FZF_LIST_LABEL" =~ "All" ]]; then %s; elif [[ "$FZF_LIST_LABEL" =~ "Top" ]]; then %s; elif [[ "$FZF_LIST_LABEL" =~ "Function" ]]; then %s; else %s; fi]=], query_top, query_functions, query_classes, query_all)
-
   return {
     '--layout', 'reverse',
-    '--list-label', ' All ',
-    '--header', ':: \x1b[93mCTRL-G\x1b[0m to toggle between symbols',
-    -- don't sort the result to preserve outline
-    '--no-sort',
-    '--bind', toggle_symbols_bind,
-    '--bind', 'start:transform:[[ ! "$FZF_PROMPT" =~ "Outline" ]] && echo "change-header()+change-list-label()+clear-query+toggle-sort+unbind(ctrl-g)"',
   }
 end
 
