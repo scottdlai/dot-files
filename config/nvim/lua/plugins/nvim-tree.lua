@@ -69,6 +69,7 @@ require('nvim-tree').setup {
       -- Custom files
       'package.json',
       '.env',
+      'go.mod',
     },
     icons = {
       show = {
