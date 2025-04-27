@@ -80,6 +80,7 @@ keymap.set('n', '<Leader>Q', ':bufdo bwipeout<CR>', { silent = true, noremap = t
 -- Git stuffs
 keymap.set('n', '<Leader>G', ':tab Git<CR>', { silent = true, noremap = true })
 keymap.set('n', '<Leader>gb', ':Git blame<CR>', { silent = true, noremap = true })
+keymap.set('n', '<Leader>gu', ':GitGutterUndoHunk<CR>', { silent = true, noremap = true })
 
 -- Visual mode
 keymap.set('v', 'q', '<Esc>', { noremap = true })
