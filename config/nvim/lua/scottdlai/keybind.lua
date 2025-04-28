@@ -58,9 +58,9 @@ keymap.set('n', '<C-s>', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gIc<Left><Left><Left><L
 keymap.set('v', '<C-s>', [["0y:%s/<C-r>0/<C-r>0/gci<Left><Left><Left><Left>]])
 
 -- fzf mappings
-keymap.set('n', '<C-p>', ':Files<CR>', { silent = true })
-keymap.set('n', '<C-f>', ':BLines<CR>', { silent = true })
-keymap.set('v', '<C-f>', '"0y:BLines <C-r>0<CR>', { silent = true })
+keymap.set('n', '<C-p>', ':FzfFiles<CR>', { silent = true })
+keymap.set('n', '<C-f>', ':FzfBLines<CR>', { silent = true })
+keymap.set('v', '<C-f>', '"0y:FzfBLines <C-r>0<CR>', { silent = true })
 
 keymap.set('n', '<Leader>F', ':Rg<CR>', { silent = true })
 keymap.set('v', '<Leader>F', '"0y:Rg <C-r>0<CR>', { silent = true })

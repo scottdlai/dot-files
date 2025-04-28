@@ -55,7 +55,7 @@ vim.api.nvim_create_autocmd('BufEnter', {
       local opts = { noremap = true, silent = true, buffer = true }
       vim.keymap.set('n', '<LocalLeader>l', ':diffget LOCAL<CR>', opts)
       vim.keymap.set('n', '<LocalLeader>r', ':diffget REMOTE<CR>', opts)
-      vim.keymap.set('n', '<LocalLeader>t', ':Windows<CR>', opts)
+      vim.keymap.set('n', '<LocalLeader>t', ':FzfWindows<CR>', opts)
       vim.keymap.set('n', '<LocalLeader>q', ':tabclose<CR>', opts)
       vim.keymap.set('n', '<LocalLeader>Q', ':qa<CR>', opts)
     end

@@ -62,6 +62,11 @@ local function my_rg(opts)
   return fzf_vim_grep(command, fzf_opts, opts.bang)
 end
 
+vim.api.nvim_create_user_command("Rg", my_rg, {
+  bang = true,
+  nargs = "*",
+})
+
 local function get_files_options()
   local disable_git_label = " All "
   local enable_git_label = " Git "
@@ -92,11 +97,6 @@ local function get_files_options()
   return files_options
 end
 
-vim.api.nvim_create_user_command("Rg", my_rg, {
-  bang = true,
-  nargs = "*",
-})
-
 if os.getenv('TMUX') then
   vim.g.fzf_layout = { tmux = 'center,60%,80%' }
 else
@@ -108,6 +108,7 @@ vim.g.fzf_vim = {
   windows_options = { '--query', '> ', },
   buffers_jump = 1,
   preview_window = { 'right,50%,<60(down,45%)', 'ctrl-/' },
+  command_prefix = 'Fzf'
 }
 
 -- COC FZF
