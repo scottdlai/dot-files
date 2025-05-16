@@ -1,7 +1,8 @@
 -- Enable line number
 vim.g.goyo_linenr = 1
 -- Increase width in focus mode
-vim.g.goyo_width = 120
+vim.g.goyo_width = 160
+vim.g.goyo_height = '90%'
 
 local is_tmux_pane_zoomed = false
 

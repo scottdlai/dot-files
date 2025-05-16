@@ -37,6 +37,9 @@ keymap.set('n', 'L', ':bnext<CR>', { silent = true })
 -- Keep cursor at the start of line when joining lines
 keymap.set('n', 'J', 'mzJ`z:delm z<CR>', { silent = true })
 
+keymap.set('n', 'gJ', ':TSJJoin<CR>', { silent = true })
+keymap.set('n', 'gS', ':TSJSplit<CR>', { silent = true })
+
 -- Don't add { and } movements to the jumplist
 -- https://superuser.com/questions/836784/in-vim-dont-store-motions-in-jumplist
 local para_opts = { noremap = true, silent = true }
