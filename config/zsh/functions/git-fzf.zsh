@@ -5,7 +5,7 @@ function _git_logf {
         --header $':: \e[93mCTRL-Y\e[0m to yank commit hash, \e[93mCTRL-S\e[0m to checkout' \
         --delimiter ' ' \
         --accept-nth 1 \
-        --preview 'git diff --color {1}^!' \
+        --preview 'git diff --color=always {1}^!' \
         --preview-window 'right,50%,<60(down,45%)' \
         --bind 'ctrl-/:toggle-preview' \
         --bind 'ctrl-y:execute-silent(echo -n {1} | pbcopy)+abort' \
