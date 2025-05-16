@@ -27,6 +27,9 @@ Plug('echasnovski/mini.surround')
 Plug('scottdlai/vim-bbye')
 Plug('christoomey/vim-tmux-navigator')
 
+Plug('unblevable/quick-scope')
+Plug('Wansmer/treesj')
+
 -- themes
 -- this one supports treesitter
 Plug('sainnhe/gruvbox-material')

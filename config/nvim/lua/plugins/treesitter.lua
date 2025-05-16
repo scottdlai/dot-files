@@ -28,6 +28,8 @@ require('nvim-treesitter.configs').setup({
 
       keymaps = {
         -- You can use the capture groups defined in textobjects.scm
+        ['ia'] = { query = '@parameter.inner', desc = 'Select inner part of a parameter region' },
+        ['aa'] = { query = '@parameter.outer', desc = 'Select outer part of a parameter region' },
         ['if'] = { query = '@function.inner', desc = 'Select inner part of a function region' },
         ['af'] = { query = '@function.outer', desc = 'Select outer part of a function region' },
         ['ic'] = { query = '@class.inner', desc = 'Select inner part of a class region' },
@@ -43,7 +45,6 @@ require('nvim-treesitter.configs').setup({
       goto_next_start = {
         [']f'] = { query = '@function.outer', desc = 'Next method start' },
         [']s'] = { query = '@block.outer', desc = 'Next scope start' },
-        [']a'] = { query = '@assignment.outer', desc = 'Next assignment start' },
       },
       goto_next_end = {
         [']F'] = { query = '@function.outer', desc = 'Next method end' },
