@@ -57,13 +57,17 @@ keymap.set('n', 'N', 'Nzzzv', { noremap = true, silent = true })
 keymap.set('n', '<C-s>', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gIc<Left><Left><Left><Left>]])
 keymap.set('v', '<C-s>', [["0y:%s/<C-r>0/<C-r>0/gci<Left><Left><Left><Left>]])
 
--- fzf mappings
-keymap.set('n', '<C-p>', ':FzfFiles<CR>', { silent = true })
-keymap.set('n', '<C-f>', ':FzfBLines<CR>', { silent = true })
-keymap.set('v', '<C-f>', '"0y:FzfBLines <C-r>0<CR>', { silent = true })
+-- keep selection after indenting
+keymap.set('v', '>', '>gv', { noremap = true })
+keymap.set('v', '<', '<gv', { noremap = true })
 
-keymap.set('n', '<Leader>F', ':Rg<CR>', { silent = true })
-keymap.set('v', '<Leader>F', '"0y:Rg <C-r>0<CR>', { silent = true })
+-- fzf mappings
+keymap.set('n', '<C-p>', ':Files<CR>', { silent = true })
+keymap.set('n', '<C-f>', ':BLines<CR>', { silent = true })
+keymap.set('v', '<C-f>', '"0y:BLines <C-r>0<CR>', { silent = true })
+
+keymap.set('n', '<Leader>F', ':Grep<CR>', { silent = true })
+keymap.set('v', '<Leader>F', '"0y:Grep <C-r>0<CR>', { silent = true })
 
 -- Integration with Tmux navigation
 keymap.set('n', '<C-w>h', ':TmuxNavigateLeft<CR>', { silent = true })
@@ -71,9 +75,8 @@ keymap.set('n', '<C-w>j', ':TmuxNavigateDown<CR>', { silent = true })
 keymap.set('n', '<C-w>k', ':TmuxNavigateUp<CR>', { silent = true })
 keymap.set('n', '<C-w>l', ':TmuxNavigateRight<CR>', { silent = true })
 
-keymap.set('n', '<Leader><Leader>', ':Buffers<CR>', { silent = true, noremap = true })
+keymap.set('n', '<Leader>B', ':Buffers<CR>', { silent = true, noremap = true })
 keymap.set('n', '<Leader>T', ':NvimTreeFindFile<CR>', { silent = true, noremap = true })
-keymap.set('n', '<Leader>Z', ':Goyo<CR>', { silent = true, noremap = true })
 keymap.set('n', '<Leader>bw', ':Bwipeout<CR>', { silent = true, noremap = true })
 keymap.set('n', '<Leader>Q', ':bufdo bwipeout<CR>', { silent = true, noremap = true })
 
@@ -82,5 +85,15 @@ keymap.set('n', '<Leader>G', ':tab Git<CR>', { silent = true, noremap = true })
 keymap.set('n', '<Leader>gb', ':Git blame<CR>', { silent = true, noremap = true })
 keymap.set('n', '<Leader>gu', ':GitGutterUndoHunk<CR>', { silent = true, noremap = true })
 
--- Visual mode
-keymap.set('v', 'q', '<Esc>', { noremap = true })
+-- toggle zoom window when splitting
+keymap.set('n', '<leader>zz', function()
+  local win_amount = #vim.api.nvim_tabpage_list_wins(0)
+
+  if win_amount > 1 then
+    vim.cmd('tab split')
+    vim.opt.showtabline = 0
+  else
+    vim.cmd('silent! tabc')
+    vim.opt.showtabline = 2
+  end
+end, { silent = true, noremap = true })

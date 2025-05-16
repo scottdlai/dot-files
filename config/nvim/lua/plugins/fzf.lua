@@ -18,7 +18,7 @@ local function my_rg(opts)
 
   local prompt = 'RG> '
   local enabled_flag = '--disabled'
-  local start_binding = 'start:rebind(change)'
+  local start_binding = 'start:rebind(change)+unbind(ctrl-f)'
 
   -- search file name and all files if query is provided
   if opts.args ~= '' then
@@ -35,8 +35,8 @@ local function my_rg(opts)
 
   local live_grep_bind = string.format('change:reload(%s {q} 2>&1 || true)', rg)
 
-  local fzf_mode_actions = string.format('unbind(change)+change-prompt(FZF> )+enable-search+clear-query+change-nth(1..)+change-list-label(%s)', include_file_name_label)
-  local live_grep_actions = string.format('rebind(change)+change-prompt(RG> )+reload(%s {q} 2>&1 || true)+disable-search', rg)
+  local fzf_mode_actions = string.format('unbind(change)+change-prompt(FZF> )+enable-search+clear-query+change-nth(1..)+change-list-label(%s)+rebind(ctrl-f)', include_file_name_label)
+  local live_grep_actions = string.format('rebind(change)+change-prompt(RG> )+reload(%s {q} 2>&1 || true)+disable-search+unbind(ctrl-f)', rg)
   local ctrl_g_bind = string.format([=[ctrl-g:transform:[[ "$FZF_PROMPT" =~ "RG" ]] && echo '%s' || echo '%s']=], fzf_mode_actions, live_grep_actions)
 
   local options = {
@@ -62,7 +62,7 @@ local function my_rg(opts)
   return fzf_vim_grep(command, fzf_opts, opts.bang)
 end
 
-vim.api.nvim_create_user_command("Rg", my_rg, {
+vim.api.nvim_create_user_command("Grep", my_rg, {
   bang = true,
   nargs = "*",
 })
@@ -73,7 +73,6 @@ local function get_files_options()
 
   local header = ':: \x1b[93mCTRL-G\x1b[0m to toggle Git'
 
-  -- hacky way to include .env files in result if ignored by git
   local rg_enable_git_command = "fd --follow --type file --hidden --exclude '.git' --exclude 'node_modules'"
   local rg_disable_git_command = "fd --follow --type file --hidden --no-ignore --exclude '.git' --exclude 'node_modules'"
 
@@ -106,9 +105,13 @@ end
 vim.g.fzf_vim = {
   files_options = get_files_options(),
   windows_options = { '--query', '> ', },
-  buffers_jump = 1,
   preview_window = { 'right,50%,<60(down,45%)', 'ctrl-/' },
-  command_prefix = 'Fzf'
+}
+
+vim.g.fzf_action = {
+  ['ctrl-t'] = 'tab split',
+  ['ctrl-s'] = 'split',
+  ['ctrl-v'] = 'vsplit',
 }
 
 -- COC FZF
