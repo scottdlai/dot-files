@@ -66,9 +66,8 @@ keymap.set('v', '<', '<gv', { noremap = true })
 
 -- fzf mappings
 keymap.set('n', '<C-p>', ':Files<CR>', { silent = true })
-keymap.set('n', '<C-f>', ':BLines<CR>', { silent = true })
-keymap.set('v', '<C-f>', '"0y:BLines <C-r>0<CR>', { silent = true })
-
+keymap.set('n', '<Leader>f', ':BLines<CR>', { silent = true })
+keymap.set('v', '<Leader>f', '"0y:BLines <C-r>0<CR>', { silent = true })
 keymap.set('n', '<Leader>F', ':Grep<CR>', { silent = true })
 keymap.set('v', '<Leader>F', '"0y:Grep <C-r>0<CR>', { silent = true })
 
@@ -94,9 +93,7 @@ keymap.set('n', '<leader>zz', function()
 
   if win_amount > 1 then
     vim.cmd('tab split')
-    vim.opt.showtabline = 0
   else
     vim.cmd('silent! tabc')
-    vim.opt.showtabline = 2
   end
 end, { silent = true, noremap = true })
