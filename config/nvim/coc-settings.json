@@ -15,5 +15,6 @@
     ["cva\\(?([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
     ["cx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"]
   ],
-  "prettier.singleQuote": true
+  "prettier.singleQuote": true,
+  "inlayHint.enable": false
 }

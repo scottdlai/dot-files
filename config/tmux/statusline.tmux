@@ -8,9 +8,9 @@ _tmux_color_synchronized="brightblue"
 _tmux_color_primary_mode="brightyellow"
 _tmux_color_active_border="white"
 _tmux_color_text_primary="brightwhite"
-_tmux_color_text_secondary="#bdae93"
-_tmux_color_bg_primary="#32302f"
-_tmux_color_bg_secondary="#504945"
+_tmux_color_text_secondary="brightwhite"
+_tmux_color_bg_primary="#272727"
+_tmux_color_bg_secondary="brightblack"
 _tmux_color_misc="brightcyan"
 
 _tmux_block_color="#{?client_prefix,\
@@ -76,7 +76,7 @@ set -g status-left "\
 set -g status-right "\
 | #{user} \
 #[bg=$_tmux_color_bg_secondary, fg=$_tmux_color_text_secondary] #{pane_width}x#{pane_height} \
-#[bg=$_tmux_block_color,fg=$_tmux_color_bg_primary,bold]  PANE #{pane_index}/#{window_panes}  \
+#[bg=$_tmux_block_color,fg=$_tmux_color_bg_primary,bold]  pane #{pane_index}/#{window_panes}  \
 "
 
 # window separators

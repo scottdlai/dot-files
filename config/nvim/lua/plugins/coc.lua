@@ -108,12 +108,6 @@ vim.api.nvim_create_user_command("OR", "call CocActionAsync('runCommand', 'edito
 -- Prettier
 vim.api.nvim_create_user_command('Prettier', 'call CocAction("runCommand", "prettier.forceFormatDocument")', {})
 
--- Remove default lsp keymap after nvim 0.11
-vim.keymap.del('n', 'grr')
-vim.keymap.del('n', 'gri')
-vim.keymap.del('n', 'grn')
-vim.keymap.del('n', 'gra')
-vim.keymap.del('n', 'gO')
 
 -- LSP specific setup
 vim.api.nvim_create_autocmd('FileType', {
@@ -133,7 +127,7 @@ vim.api.nvim_create_autocmd('FileType', {
     group = vim.api.nvim_create_augroup('COC setup', {}),
     callback = function()
       local opts = { silent = true, noremap = true, buffer = true }
-      keymap.set('n', '<C-k>', ':CocFzfList outline<CR>', opts)
+      keymap.set('n', 'gO', ':CocFzfList outline<CR>', opts)
 keymap.set('n', '<Leader>da', ':CocFzfList diagnostics<CR>', { silent = true })
 
       -- Symbol renaming
@@ -143,6 +137,6 @@ keymap.set('n', '<Leader>da', ':CocFzfList diagnostics<CR>', { silent = true })
       -- GoTo code navigation
       keymap.set("n", "gd", "<Plug>(coc-definition)", {silent = true})
       keymap.set("n", "gi", "<Plug>(coc-implementation)", {silent = true})
-      keymap.set("n", "gr", "<Plug>(coc-references)", {silent = true})
+      keymap.set("n", "grr", "<Plug>(coc-references)", {silent = true})
     end,
 })
