@@ -15,4 +15,4 @@ ZSH_HIGHLIGHT_STYLES[double-hyphen-option]='bold'
 # Change the color of the character that the cursor is on
 ZSH_HIGHLIGHT_STYLES[cursor]='standout'
 
-source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+zsh-plugin "zsh-users/zsh-syntax-highlighting"

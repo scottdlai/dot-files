@@ -2,7 +2,7 @@
 autoload -U colors && colors
 
 # Prompt
-[ -f "$ZDOTDIR/prompt.zsh" ] && source "$ZDOTDIR/prompt.zsh"
+source "$ZDOTDIR/prompt.zsh"
 
 # History
 export HISTFILE="$XDG_STATE_HOME/zsh/zsh_history"
@@ -35,11 +35,14 @@ zmodload zsh/complist
 compinit -d "$ZSH_COMPDUMP"
 _comp_options+=(globdots) # Include hidden files.
 
+# Simple plugin manager
+source "$ZDOTDIR/plugin.zsh"
+
 # Vi mode for zsh
-[ -f "$ZDOTDIR/vim.zsh" ] && source "$ZDOTDIR/vim.zsh"
+source "$ZDOTDIR/vim.zsh"
 
 # aliases
-[ -f "$ZDOTDIR/alias.zsh" ] && source "$ZDOTDIR/alias.zsh"
+source "$ZDOTDIR/alias.zsh"
 
 # functions
 for function in $ZDOTDIR/functions/*.zsh; do
@@ -52,4 +55,4 @@ for file in $ZDOTDIR/other/*.zsh; do
 done
 
 # Syntax highlighting
-[ -f "$ZDOTDIR/syntax-highlight.zsh" ] && source "$ZDOTDIR/syntax-highlight.zsh"
+source "$ZDOTDIR/syntax-highlight.zsh"
