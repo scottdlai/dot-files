@@ -25,8 +25,6 @@ vim.g['airline#extensions#coc#show_coc_status'] = 0
 -- show filetype | encoding | fileformat
 --vim.g.airline_section_x = "%{&fileformat} | %{&encoding} | " .. "%{len(&filetype) > 0 ? &filetype : 'no ft'}"
 vim.g.airline_section_x = '%{strpart(&fileformat." | ".&encoding." | ".(len(&filetype) > 0 ? &filetype : "no ft"), 0, 25)}'
--- show maxline|maxcolumn
--- vim.g.airline_section_y = '%L|%{col("$")-1}'
 vim.g.airline_section_y = '%p%%'
 -- just show line:column
 vim.g.airline_section_z = ' %#__accent_bold#%l:%v%#__restore__# '

@@ -21,7 +21,6 @@ keymap.set({ 'n', 'v', 'o' }, ',', [[getcharsearch().forward ? ',' : ';']], char
 
 -- Normal mode
 keymap.set('n', '<F1>', ':Helptags<CR>', { noremap = true, silent = true })
-keymap.set('n', '<Leader>1', ':Helptags<CR>', { noremap = true, silent = true })
 
 -- tab is ctrl-i, map shift tab to ctrl-o
 keymap.set('n', '<S-Tab>', '<C-o>', { noremap = true, silent = true })
@@ -30,9 +29,6 @@ keymap.set('n', '<Left>', ':vertical resize -1<CR>', { silent = true, noremap = 
 keymap.set('n', '<Right>', ':vertical resize +1<CR>', { silent = true, noremap = true })
 keymap.set('n', '<Up>', ':resize +1<CR>', { silent = true, noremap = true })
 keymap.set('n', '<Down>', ':resize -1<CR>', { silent = true, noremap = true })
-
-keymap.set('n', 'H', ':bprevious<CR>', { silent = true })
-keymap.set('n', 'L', ':bnext<CR>', { silent = true })
 
 -- Keep cursor at the start of line when joining lines
 keymap.set('n', 'J', 'mzJ`z:delm z<CR>', { silent = true })
