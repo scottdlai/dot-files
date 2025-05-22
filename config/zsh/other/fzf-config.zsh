@@ -1,5 +1,5 @@
 # Set up fzf key bindings and fuzzy completion
-source <(fzf --zsh)
+command -v fzf >/dev/null && source <(fzf --zsh)
 
 _gen_fzf_color_scheme() {
     echo -n "--color=bg+:#3c3836,border:#928374,spinner:#d8a657,hl:#a9b665,fg:#d4be98,header:#928374,info:#89b482,pointer:#7daea3,marker:#d8a657,fg+:#d4be98,prompt:#e78a4e,hl+:#89b482,label:white"
