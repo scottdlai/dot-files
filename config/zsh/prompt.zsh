@@ -63,5 +63,5 @@ setopt prompt_subst
 
 # Prompt
 export PROMPT='
-%B%F{cyan}%n@%m%f%b in %B%F{blue}%2~%f%b at %B%F{magenta}%*%f%b $(mnml_wrap EXTRA_PROMPT)
+%B%F{cyan}%n@%m%f%b in %B%F{blue}%3~%f%b at %B%F{magenta}%*%f%b $(mnml_wrap EXTRA_PROMPT)
 %B%F{cyan}%(!.#.❯) %f%b'
