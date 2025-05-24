@@ -74,8 +74,10 @@ keymap.set('n', '<C-w>k', ':TmuxNavigateUp<CR>', { silent = true })
 keymap.set('n', '<C-w>l', ':TmuxNavigateRight<CR>', { silent = true })
 
 keymap.set('n', '<Leader>B', ':Buffers<CR>', { silent = true, noremap = true })
-keymap.set('n', '<Leader>T', ':NvimTreeFindFile<CR>', { silent = true, noremap = true })
 keymap.set('n', '<Leader>bw', ':Bwipeout<CR>', { silent = true, noremap = true })
+keymap.set('n', '<Leader>by', ':%y+<CR>', { silent = true, noremap = true })
+
+keymap.set('n', '<Leader>T', ':NvimTreeFindFile<CR>', { silent = true, noremap = true })
 keymap.set('n', '<Leader>Q', ':bufdo bwipeout<CR>', { silent = true, noremap = true })
 
 -- Git stuffs
