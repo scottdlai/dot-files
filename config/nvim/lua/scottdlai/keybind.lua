@@ -54,7 +54,7 @@ keymap.set('n', 'N', 'Nzzzv', { noremap = true, silent = true })
 
 -- Replace word under cursor
 keymap.set('n', '<C-s>', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gIc<Left><Left><Left><Left>]])
-keymap.set('v', '<C-s>', [["0y:%s/<C-r>0/<C-r>0/gci<Left><Left><Left><Left>]])
+keymap.set('v', '<C-s>', [["0y:%s/<C-r>=escape(@0, '/\')<CR>/<C-r>=escape(@0, '/\')<CR>/gci<Left><Left><Left><Left>]])
 
 -- keep selection after indenting
 keymap.set('v', '>', '>gv', { noremap = true })
