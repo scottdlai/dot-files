@@ -41,3 +41,8 @@ zle-line-init() {
 zle -N zle-line-init
 echo -ne '\e[5 q' # Use beam shape cursor on startup.
 preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
+
+# https://unix.stackexchange.com/a/34251
+autoload -z edit-command-line
+zle -N edit-command-line
+bindkey "^X^E" edit-command-line
