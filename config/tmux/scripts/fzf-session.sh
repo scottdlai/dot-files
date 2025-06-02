@@ -6,7 +6,7 @@ function main {
 
     fzf --bind "ctrl-x:execute-silent(tmux kill-session -t {})+reload:$list_sessions" \
         --bind "start:reload:$list_sessions" \
-        --bind "focus:transform-preview-label:echo ' {} '" \
+        --bind "focus:transform-preview-label:tmux list-session -F ' #S: #{session_windows} windows ' -f '#{==:#S,{}}'" \
         --bind 'ctrl-/:toggle-preview' \
         --preview 'tmux capture-pane -e -pt {}' \
         --preview-window 'down,60%' \
