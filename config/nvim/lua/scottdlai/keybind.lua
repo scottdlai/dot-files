@@ -92,6 +92,9 @@ keymap.set('n', '<leader>zz', function()
   if win_amount > 1 then
     vim.cmd('tab split')
   else
-    vim.cmd('silent! tabc')
+    -- keep position
+    vim.cmd.normal("mZ")
+    vim.cmd('silent! tabclose')
+    vim.cmd.normal("`Z")
   end
 end, { silent = true, noremap = true })
