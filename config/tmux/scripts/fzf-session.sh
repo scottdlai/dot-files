@@ -9,7 +9,7 @@ function main {
         --bind "focus:transform-preview-label:tmux list-session -F ' #S: #{session_windows} windows ' -f '#{==:#S,{}}'" \
         --bind 'ctrl-/:toggle-preview' \
         --preview 'tmux capture-pane -e -pt {}' \
-        --preview-window 'down,75%' \
+        --preview-window 'down,80%' \
         --prompt 'switch-client ' \
         --style default \
         --border none \
