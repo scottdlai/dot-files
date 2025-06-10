@@ -36,6 +36,9 @@ keymap.set('n', 'J', 'mzJ`z:delm z<CR>', { silent = true })
 keymap.set('n', 'gJ', ':TSJJoin<CR>', { silent = true })
 keymap.set('n', 'gS', ':TSJSplit<CR>', { silent = true })
 
+-- quickly delete marks: https://vi.stackexchange.com/a/13992
+keymap.set('n', 'dm', ":execute 'delmarks '.nr2char(getchar())<CR>", { silent = true })
+
 -- Don't add { and } movements to the jumplist
 -- https://superuser.com/questions/836784/in-vim-dont-store-motions-in-jumplist
 local para_opts = { noremap = true, silent = true }
@@ -76,6 +79,7 @@ keymap.set('n', '<C-w>l', ':TmuxNavigateRight<CR>', { silent = true })
 keymap.set('n', '<Leader>B', ':Buffers<CR>', { silent = true, noremap = true })
 keymap.set('n', '<Leader>bw', ':Bwipeout<CR>', { silent = true, noremap = true })
 keymap.set('n', '<Leader>by', ':%y+<CR>', { silent = true, noremap = true })
+keymap.set('n', '<Leader>bm', ':BMarks<CR>', { silent = true, noremap = true })
 
 keymap.set('n', '<Leader>T', ':NvimTreeFindFile<CR>', { silent = true, noremap = true })
 keymap.set('n', '<Leader>Q', ':bufdo bwipeout<CR>', { silent = true, noremap = true })
