@@ -39,6 +39,9 @@ keymap.set('n', 'gS', ':TSJSplit<CR>', { silent = true })
 -- quickly delete marks: https://vi.stackexchange.com/a/13992
 keymap.set('n', 'dm', ":execute 'delmarks '.nr2char(getchar())<CR>", { silent = true })
 
+keymap.set('n', '[c', '<Plug>(GitGutterPrevHunk)', { silent = true, noremap = true })
+keymap.set('n', ']c', '<Plug>(GitGutterNextHunk)', { silent = true, noremap = true })
+
 -- Don't add { and } movements to the jumplist
 -- https://superuser.com/questions/836784/in-vim-dont-store-motions-in-jumplist
 local para_opts = { noremap = true, silent = true }
@@ -87,7 +90,8 @@ keymap.set('n', '<Leader>Q', ':bufdo bwipeout<CR>', { silent = true, noremap = t
 -- Git stuffs
 keymap.set('n', '<Leader>G', ':tab Git<CR>', { silent = true, noremap = true })
 keymap.set('n', '<Leader>gb', ':Git blame<CR>', { silent = true, noremap = true })
-keymap.set('n', '<Leader>gu', ':GitGutterUndoHunk<CR>', { silent = true, noremap = true })
+keymap.set({ 'n', 'v', }, '<Leader>gs', ':GitGutterStageHunk<CR>', { silent = true, noremap = true })
+keymap.set({ 'n', 'v', }, '<Leader>gu', ':GitGutterUndoHunk<CR>', { silent = true, noremap = true })
 
 -- toggle zoom window when splitting
 keymap.set('n', '<leader>zz', function()
